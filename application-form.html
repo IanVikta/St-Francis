@@ -23,75 +23,127 @@
 
   <style>
     .application-form {
-      padding: 4rem 0;
+      padding: 2rem 0;
       background: var(--background-color);
     }
     .form-container {
-      max-width: 800px;
-      margin: 0 auto;
+      width: 100%;
+      max-width: none;
+      margin: 0;
       background: var(--surface-color);
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
+      padding: 2rem 2vw;
     }
-
+    .form-section, .form-header, .rules-section {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto 2rem auto;
+    }
     .form-header {
       text-align: center;
       margin-bottom: 2rem;
     }
-
     .form-header h1 {
       color: var(--heading-color);
       font-size: 2rem;
       margin-bottom: 0.5rem;
     }
-
     .form-header p {
       color: var(--default-color);
       opacity: 0.8;
     }
-
     .form-section {
       margin-bottom: 2rem;
       padding-bottom: 2rem;
       border-bottom: 1px solid #eee;
     }
-
     .form-section:last-child {
       border-bottom: none;
     }
-
     .section-title {
       color: var(--heading-color);
       font-size: 1.2rem;
       margin-bottom: 1.5rem;
       font-weight: 600;
     }
-
     .form-label {
       font-weight: 500;
       color: var(--heading-color);
       margin-bottom: 0.5rem;
     }
-
-    .form-control {
+    .form-control, .form-select {
+      width: 100%;
+      min-width: 0;
       height: 45px;
       border: 2px solid #e0e0e0;
       border-radius: 8px;
       padding: 0.5rem 1rem;
       transition: all 0.3s ease;
+      box-sizing: border-box;
     }
-
-    .form-control:focus {
-      border-color: var(--accent-color);
-      box-shadow: 0 0 0 0.2rem rgba(211, 47, 47, 0.1);
-    }
-
     textarea.form-control {
       height: auto;
       min-height: 100px;
     }
-
+    /* Custom file input */
+    .custom-file-input {
+      position: relative;
+      width: 100%;
+      height: 45px;
+      margin-bottom: 0;
+    }
+    .custom-file-input input[type="file"] {
+      opacity: 0;
+      width: 100%;
+      height: 45px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      cursor: pointer;
+    }
+    .custom-file-label {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 45px;
+      background: #f5f5f5;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      color: #888;
+      font-size: 1rem;
+      z-index: 1;
+      transition: border-color 0.3s;
+    }
+    .custom-file-input input[type="file"]:focus + .custom-file-label,
+    .custom-file-input input[type="file"]:hover + .custom-file-label {
+      border-color: var(--accent-color);
+    }
+    .custom-file-label.selected {
+      color: var(--heading-color);
+      background: #e9f7ef;
+      border-color: var(--accent-color);
+    }
+    .custom-file-btn {
+      margin-left: auto;
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.4rem 1.2rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 3;
+    }
+    .custom-file-btn:hover {
+      background: var(--accent-color-hover);
+    }
     .photo-upload {
       border: 2px dashed #e0e0e0;
       border-radius: 8px;
@@ -100,31 +152,26 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-
     .photo-upload:hover {
       border-color: var(--accent-color);
     }
-
     .photo-upload i {
       font-size: 2rem;
       color: var(--accent-color);
       margin-bottom: 1rem;
     }
-
     .photo-preview {
       max-width: 150px;
       max-height: 150px;
       margin: 1rem auto;
       display: none;
     }
-
     .form-actions {
       display: flex;
       gap: 1rem;
       justify-content: center;
       margin-top: 2rem;
     }
-
     .btn-submit {
       background-color: var(--accent-color);
       color: #fff;
@@ -134,12 +181,10 @@
       font-weight: 500;
       transition: all 0.3s ease;
     }
-
     .btn-submit:hover {
       background-color: var(--accent-color-hover);
       transform: translateY(-2px);
     }
-
     .btn-download {
       background-color: #fff;
       color: var(--accent-color);
@@ -149,31 +194,34 @@
       font-weight: 500;
       transition: all 0.3s ease;
     }
-
     .btn-download:hover {
       background-color: var(--accent-color);
       color: #fff;
       transform: translateY(-2px);
     }
-
     .required-field::after {
       content: '*';
       color: var(--accent-color);
       margin-left: 4px;
     }
-
     @media (max-width: 768px) {
       .form-container {
-        padding: 1.5rem;
+        padding: 1rem 0.5rem;
       }
-
+      .form-section, .form-header, .rules-section {
+        max-width: 100%;
+        padding: 0 0.5rem;
+      }
       .form-actions {
         flex-direction: column;
       }
-
       .btn-submit, .btn-download {
         width: 100%;
       }
+    }
+    .swal2-border-radius {
+      border-radius: 1.25rem !important;
+      box-shadow: 0 8px 32px rgba(60,60,60,0.12);
     }
   </style>
 </head>
@@ -186,174 +234,423 @@
           <img src="assets/img/logo.png" alt="St. Francis Primary School Logo" style="max-width:120px; height:auto;">
         </div>
         <div class="rules-section" style="margin-bottom:2rem;">
-          <h2 style="text-align:center; color:var(--heading-color); font-size:1.3rem; margin-bottom:1rem;">Rules and Regulations</h2>
+          <h2 style="text-align:center; color:var(--heading-color); font-size:1.3rem; margin-bottom:1rem;">Admission Instructions & Privacy</h2>
           <ul style="max-width:700px; margin:0 auto; color:var(--default-color); font-size:1rem; line-height:1.7;">
-            <li>All information provided must be accurate and truthful. False information may lead to disqualification.</li>
-            <li>All required fields must be completed before submission.</li>
-            <li>Applicants must attach a recent passport size photo.</li>
-            <li>Admission is subject to successful completion of the interview and verification of documents.</li>
-            <li>All applicants must adhere to the school's code of conduct and policies.</li>
-            <li>Any form of malpractice or forgery will result in immediate rejection of the application.</li>
-            <li>Submission of this form does not guarantee admission; all applications are subject to review.</li>
-            <li>By submitting this form, you agree to abide by all school rules and regulations if admitted.</li>
+            <li>All fields marked with an asterisk (*) are mandatory.</li>
+            <li>Upload documents in PDF or JPEG format only.</li>
+            <li>Submit via: <b>Online Portal</b> (preferred), <b>Email</b> (admissions@school.edu), or <b>In-person</b> at the school office.</li>
+            <li>Submission Deadline: <b>[Insert Date]</b></li>
+            <li>For inquiries, contact: <b>Admissions Office, St. Francis Primary School, Tel: 0123-456789, Email: admissions@school.edu</b></li>
+            <li>All information collected is strictly for admission purposes and will be handled in accordance with our privacy policy.</li>
           </ul>
         </div>
-        <div class="form-header">
-          <h1>Student Admission Application Form</h1>
-          <p>Please fill out all required fields marked with an asterisk (*)</p>
-        </div>
-
-        <form id="admissionForm" action="process-application.php" method="POST" enctype="multipart/form-data">
-          <!-- Student Information -->
+        <form id="admissionForm" action="forms/admission_submit.php" method="POST" enctype="multipart/form-data">
+          <!-- 1. Student Information -->
           <div class="form-section">
-            <h3 class="section-title">Student Information</h3>
+            <h3 class="section-title">1. Student Information</h3>
             <div class="row g-3">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <label class="form-label required-field">First Name</label>
-                <input type="text" class="form-control" name="student_firstname" required>
+                <input type="text" class="form-control" name="student_first_name" required>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
+                <label class="form-label">Middle Name</label>
+                <input type="text" class="form-control" name="student_middle_name">
+              </div>
+              <div class="col-md-4">
                 <label class="form-label required-field">Last Name</label>
-                <input type="text" class="form-control" name="student_lastname" required>
+                <input type="text" class="form-control" name="student_last_name" required>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <label class="form-label required-field">Date of Birth</label>
-                <input type="date" class="form-control" name="dob" required>
+                <input type="date" class="form-control" name="student_dob" required>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <label class="form-label required-field">Gender</label>
-                <select class="form-select" name="gender" required>
-                  <option value="">Select Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                <select class="form-select" name="student_gender" required>
+                  <option value="" selected disabled>Select</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label required-field">Nationality</label>
+                <input type="text" class="form-control" name="student_nationality" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label required-field">Home Address (City, State, Postal Code)</label>
+                <input type="text" class="form-control" name="student_address" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label required-field">Grade Level Applying For</label>
+                <select class="form-select" name="student_grade" required>
+                  <option value="" selected disabled>Select</option>
+                  <option>Daycare</option>
+                  <option>Kindergarten</option>
+                  <option>Nursery</option>
+                  <option>P.1</option>
+                  <option>P.2</option>
+                  <option>P.3</option>
+                  <option>P.4</option>
+                  <option>P.5</option>
+                  <option>P.6</option>
+                  <option>P.7</option>
                 </select>
               </div>
               <div class="col-md-6">
-                <label class="form-label required-field">Class Applied For</label>
-                <select class="form-select" name="class_applied" required>
-                  <option value="">Select Class</option>
-                  <option value="p1">Primary 1</option>
-                  <option value="p2">Primary 2</option>
-                  <option value="p3">Primary 3</option>
-                  <option value="p4">Primary 4</option>
-                  <option value="p5">Primary 5</option>
-                  <option value="p6">Primary 6</option>
-                  <option value="p7">Primary 7</option>
-                </select>
+                <label class="form-label">Previous School Name</label>
+                <input type="text" class="form-control" name="previous_school_name">
               </div>
               <div class="col-md-6">
-                <label class="form-label required-field">Scholar Category</label>
-                <select class="form-select" name="scholar_category" required>
-                  <option value="">Select Category</option>
-                  <option value="day">Day Scholar</option>
-                  <option value="boarding">Boarding</option>
-                </select>
+                <label class="form-label">Previous School Address</label>
+                <input type="text" class="form-control" name="previous_school_address">
+              </div>
+              <div class="col-md-12">
+                <label class="form-label">Reason for Transfer (if applicable)</label>
+                <input type="text" class="form-control" name="reason_for_transfer">
               </div>
             </div>
           </div>
-
-          <!-- Guardian Information -->
+          <!-- 2. Parent/Guardian Information -->
           <div class="form-section">
-            <h3 class="section-title">Guardian Information</h3>
+            <h3 class="section-title">2. Parent/Guardian Information</h3>
             <div class="row g-3">
               <div class="col-md-6">
-                <label class="form-label required-field">Guardian's First Name</label>
-                <input type="text" class="form-control" name="guardian_firstname" required>
+                <h5>Parent/Guardian 1</h5>
+                <label class="form-label required-field">Full Name</label>
+                <input type="text" class="form-control" name="guardian1_fullname" required>
+                <label class="form-label required-field mt-2">Relationship</label>
+                <input type="text" class="form-control" name="guardian1_relationship" required>
+                <label class="form-label required-field mt-2">Contact Number (Primary)</label>
+                <input type="tel" class="form-control" name="guardian1_phone_primary" required>
+                <label class="form-label mt-2">Contact Number (Alternate)</label>
+                <input type="tel" class="form-control" name="guardian1_phone_alt">
+                <label class="form-label required-field mt-2">Email</label>
+                <input type="email" class="form-control" name="guardian1_email" required>
+                <label class="form-label mt-2">Occupation</label>
+                <input type="text" class="form-control" name="guardian1_occupation">
+                <label class="form-label mt-2">Address (if different)</label>
+                <input type="text" class="form-control" name="guardian1_address">
               </div>
               <div class="col-md-6">
-                <label class="form-label required-field">Guardian's Last Name</label>
-                <input type="text" class="form-control" name="guardian_lastname" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Relationship to Student</label>
-                <select class="form-select" name="guardian_relationship" required>
-                  <option value="">Select Relationship</option>
-                  <option value="father">Father</option>
-                  <option value="mother">Mother</option>
-                  <option value="guardian">Legal Guardian</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Contact Number</label>
-                <input type="tel" class="form-control" name="guardian_phone" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Email Address</label>
-                <input type="email" class="form-control" name="guardian_email" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Occupation</label>
-                <input type="text" class="form-control" name="guardian_occupation" required>
+                <h5>Parent/Guardian 2</h5>
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" name="guardian2_fullname">
+                <label class="form-label mt-2">Relationship</label>
+                <input type="text" class="form-control" name="guardian2_relationship">
+                <label class="form-label mt-2">Contact Number (Primary)</label>
+                <input type="tel" class="form-control" name="guardian2_phone_primary">
+                <label class="form-label mt-2">Contact Number (Alternate)</label>
+                <input type="tel" class="form-control" name="guardian2_phone_alt">
+                <label class="form-label mt-2">Email</label>
+                <input type="email" class="form-control" name="guardian2_email">
+                <label class="form-label mt-2">Occupation</label>
+                <input type="text" class="form-control" name="guardian2_occupation">
+                <label class="form-label mt-2">Address (if different)</label>
+                <input type="text" class="form-control" name="guardian2_address">
               </div>
             </div>
           </div>
-
-          <!-- Additional Information -->
+          <!-- 3. Emergency Contact Information -->
           <div class="form-section">
-            <h3 class="section-title">Additional Information</h3>
+            <h3 class="section-title">3. Emergency Contact Information</h3>
             <div class="row g-3">
               <div class="col-md-6">
-                <label class="form-label required-field">Religious Affiliation</label>
-                <select class="form-select" name="religion" required>
-                  <option value="">Select Religion</option>
-                  <option value="catholic">Catholic</option>
-                  <option value="anglican">Anglican</option>
-                  <option value="muslim">Muslim</option>
-                  <option value="other">Other</option>
+                <label class="form-label required-field">Full Name (non-parent/guardian)</label>
+                <input type="text" class="form-control" name="emergency_fullname" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Relationship</label>
+                <input type="text" class="form-control" name="emergency_relationship">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label required-field">Contact Number (Primary)</label>
+                <input type="tel" class="form-control" name="emergency_phone_primary" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Contact Number (Alternate)</label>
+                <input type="tel" class="form-control" name="emergency_phone_alt">
+              </div>
+              <div class="col-md-12">
+                <label class="form-label required-field">Address</label>
+                <input type="text" class="form-control" name="emergency_address" required>
+              </div>
+            </div>
+          </div>
+          <!-- 4. Medical Information -->
+          <div class="form-section">
+            <h3 class="section-title">4. Medical Information</h3>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Allergies (food, medication, environmental)</label>
+                <input type="text" class="form-control" name="allergies">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Chronic Conditions (e.g., asthma, diabetes)</label>
+                <input type="text" class="form-control" name="chronic_conditions">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Current Medications</label>
+                <input type="text" class="form-control" name="current_medications">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Family Doctor/Pediatrician Name</label>
+                <input type="text" class="form-control" name="doctor_name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Family Doctor/Pediatrician Contact</label>
+                <input type="text" class="form-control" name="doctor_contact">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label required-field">Immunization Status</label>
+                <select class="form-select" name="immunization_status" required>
+                  <option value="" selected disabled>Select</option>
+                  <option>Up-to-date</option>
+                  <option>Not up-to-date</option>
+                  <option>Unknown</option>
                 </select>
               </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Preferred Interview Date</label>
-                <input type="date" class="form-control" name="interview_date" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Former School</label>
-                <input type="text" class="form-control" name="former_school" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Area of Residence</label>
-                <input type="text" class="form-control" name="residence" required>
-              </div>
-              <div class="col-12">
-                <label class="form-label">Additional Notes</label>
-                <textarea class="form-control" name="additional_notes" rows="3"></textarea>
-              </div>
             </div>
           </div>
-
-          <!-- Photo Upload -->
+          <!-- 5. Academic and Behavioral Information -->
           <div class="form-section">
-            <h3 class="section-title">Passport Size Photo</h3>
-            <div class="photo-upload" onclick="document.getElementById('photoInput').click()">
-              <input type="file" id="photoInput" name="student_photo" accept="image/*" style="display: none;" required>
-              <i class="bi bi-camera"></i>
-              <p>Click to upload passport size photo</p>
-              <p class="text-muted small">Maximum file size: 2MB</p>
-              <img id="photoPreview" class="photo-preview" alt="Photo Preview">
+            <h3 class="section-title">5. Academic and Behavioral Information</h3>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Suspension/Expulsion History</label>
+                <select class="form-select" name="suspension_history">
+                  <option value="" selected disabled>Select</option>
+                  <option>No</option>
+                  <option>Yes</option>
+                </select>
+                <input type="text" class="form-control mt-2" name="suspension_details" placeholder="If yes, please explain">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Special Educational Needs/Learning Disabilities</label>
+                <select class="form-select" name="special_needs">
+                  <option value="" selected disabled>Select</option>
+                  <option>No</option>
+                  <option>Yes</option>
+                </select>
+                <input type="text" class="form-control mt-2" name="special_needs_details" placeholder="If yes, please provide details">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Past Academic/Behavioral Support</label>
+                <select class="form-select" name="support_history">
+                  <option value="" selected disabled>Select</option>
+                  <option>No</option>
+                  <option>Yes</option>
+                </select>
+                <input type="text" class="form-control mt-2" name="support_details" placeholder="If yes, please provide details">
+              </div>
             </div>
           </div>
-
+          <!-- 6. Additional Information -->
+          <div class="form-section">
+            <h3 class="section-title">6. Additional Information</h3>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Preferred Language(s) at Home</label>
+                <input type="text" class="form-control" name="preferred_language">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Siblings Enrolled in School</label>
+                <select class="form-select" name="siblings_enrolled">
+                  <option value="" selected disabled>Select</option>
+                  <option>No</option>
+                  <option>Yes</option>
+                </select>
+                <input type="text" class="form-control mt-2" name="siblings_details" placeholder="If yes, names/grades">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">How You Heard About the School</label>
+                <input type="text" class="form-control" name="referral_source">
+              </div>
+              <div class="col-md-12">
+                <label class="form-label">Additional Comments</label>
+                <textarea class="form-control" name="additional_comments" rows="2"></textarea>
+              </div>
+            </div>
+          </div>
+          <!-- 7. Required Documents -->
+          <div class="form-section">
+            <h3 class="section-title">7. Required Documents</h3>
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="card shadow-sm border-0 mb-3">
+                  <div class="card-body d-flex align-items-center">
+                    <i class="bi bi-file-earmark-person-fill fs-2 text-primary me-3"></i>
+                    <div class="flex-grow-1">
+                      <label class="form-label required-field mb-1">Proof of Age</label>
+                      <div class="mb-1 small text-muted">Birth certificate or passport copy</div>
+                      <div class="custom-file-input">
+                        <input type="file" name="proof_of_age" id="proof_of_age" accept=".pdf,.jpg,.jpeg,.png" required>
+                        <label class="custom-file-label" for="proof_of_age">Choose file...</label>
+                        <button type="button" class="custom-file-btn" onclick="document.getElementById('proof_of_age').click()">Browse</button>
+                      </div>
+                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card shadow-sm border-0 mb-3">
+                  <div class="card-body d-flex align-items-center">
+                    <i class="bi bi-house-door-fill fs-2 text-success me-3"></i>
+                    <div class="flex-grow-1">
+                      <label class="form-label required-field mb-1">Proof of Residence</label>
+                      <div class="mb-1 small text-muted">Utility bill or lease agreement</div>
+                      <div class="custom-file-input">
+                        <input type="file" name="proof_of_residence" id="proof_of_residence" accept=".pdf,.jpg,.jpeg,.png" required>
+                        <label class="custom-file-label" for="proof_of_residence">Choose file...</label>
+                        <button type="button" class="custom-file-btn" onclick="document.getElementById('proof_of_residence').click()">Browse</button>
+                      </div>
+                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card shadow-sm border-0 mb-3">
+                  <div class="card-body d-flex align-items-center">
+                    <i class="bi bi-journal-text fs-2 text-warning me-3"></i>
+                    <div class="flex-grow-1">
+                      <label class="form-label mb-1">Academic Records</label>
+                      <div class="mb-1 small text-muted">Report card/transcript, transfer certificate</div>
+                      <div class="custom-file-input">
+                        <input type="file" name="academic_records" id="academic_records" accept=".pdf,.jpg,.jpeg,.png">
+                        <label class="custom-file-label" for="academic_records">Choose file...</label>
+                        <button type="button" class="custom-file-btn" onclick="document.getElementById('academic_records').click()">Browse</button>
+                      </div>
+                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card shadow-sm border-0 mb-3">
+                  <div class="card-body d-flex align-items-center">
+                    <i class="bi bi-file-medical-fill fs-2 text-danger me-3"></i>
+                    <div class="flex-grow-1">
+                      <label class="form-label mb-1">Medical Records</label>
+                      <div class="mb-1 small text-muted">Immunization record, medical report</div>
+                      <div class="custom-file-input">
+                        <input type="file" name="medical_records" id="medical_records" accept=".pdf,.jpg,.jpeg,.png">
+                        <label class="custom-file-label" for="medical_records">Choose file...</label>
+                        <button type="button" class="custom-file-btn" onclick="document.getElementById('medical_records').click()">Browse</button>
+                      </div>
+                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card shadow-sm border-0 mb-3">
+                  <div class="card-body d-flex align-items-center">
+                    <i class="bi bi-person-badge-fill fs-2 text-info me-3"></i>
+                    <div class="flex-grow-1">
+                      <label class="form-label required-field mb-1">Identification</label>
+                      <div class="mb-1 small text-muted">Parent/guardian ID copy, 2 recent student passport photos</div>
+                      <div class="custom-file-input">
+                        <input type="file" name="identification" id="identification" accept=".pdf,.jpg,.jpeg,.png" required multiple>
+                        <label class="custom-file-label" for="identification">Choose files...</label>
+                        <button type="button" class="custom-file-btn" onclick="document.getElementById('identification').click()">Browse</button>
+                      </div>
+                      <small class="text-muted">PDF, JPG, JPEG, PNG. You may select multiple files.</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card shadow-sm border-0 mb-3">
+                  <div class="card-body d-flex align-items-center">
+                    <i class="bi bi-universal-access-circle fs-2 text-secondary me-3"></i>
+                    <div class="flex-grow-1">
+                      <label class="form-label mb-1">Special Needs (if applicable)</label>
+                      <div class="mb-1 small text-muted">Educational psychologist report/IEP</div>
+                      <div class="custom-file-input">
+                        <input type="file" name="special_needs_report" id="special_needs_report" accept=".pdf,.jpg,.jpeg,.png">
+                        <label class="custom-file-label" for="special_needs_report">Choose file...</label>
+                        <button type="button" class="custom-file-btn" onclick="document.getElementById('special_needs_report').click()">Browse</button>
+                      </div>
+                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card shadow-sm border-0 mb-3">
+                  <div class="card-body d-flex align-items-center">
+                    <i class="bi bi-file-earmark-lock2-fill fs-2 text-dark me-3"></i>
+                    <div class="flex-grow-1">
+                      <label class="form-label mb-1">Legal Documents (if applicable)</label>
+                      <div class="mb-1 small text-muted">Court order/custody agreement</div>
+                      <div class="custom-file-input">
+                        <input type="file" name="legal_documents" id="legal_documents" accept=".pdf,.jpg,.jpeg,.png">
+                        <label class="custom-file-label" for="legal_documents">Choose file...</label>
+                        <button type="button" class="custom-file-btn" onclick="document.getElementById('legal_documents').click()">Browse</button>
+                      </div>
+                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 8. Declaration and Consent -->
+          <div class="form-section">
+            <h3 class="section-title">8. Declaration and Consent</h3>
+            <div class="mb-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="accuracy_confirmed" id="accuracy_confirmed" required>
+                <label class="form-check-label required-field" for="accuracy_confirmed">I confirm that all information provided is accurate.</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="consent_school_use" id="consent_school_use" required>
+                <label class="form-check-label required-field" for="consent_school_use">I consent to the use of this information for school purposes.</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="consent_emergency" id="consent_emergency" required>
+                <label class="form-check-label required-field" for="consent_emergency">I consent to emergency medical care for my child if needed.</label>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label required-field">Parent/Guardian Signature (type full name)</label>
+                <input type="text" class="form-control" name="parent_signature" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label required-field">Date</label>
+                <input type="date" class="form-control" name="signature_date" required>
+              </div>
+            </div>
+          </div>
           <!-- Form Actions -->
-          <div class="form-actions">
-            <div class="form-check mb-3" style="text-align:left;">
-              <input type="checkbox" class="form-check-input" id="agreeRules" required>
-              <label class="form-check-label" for="agreeRules">I have read and agree to the rules and regulations above.</label>
-            </div>
+          <div class="form-actions mt-4">
             <button type="submit" class="btn btn-submit">Submit Application</button>
-            <button type="button" class="btn btn-download" onclick="downloadPDF()">Download PDF</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 
+  
+  <!-- jQuery FIRST -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
-
-  <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  
+  <!-- jsPDF for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+  <!-- Your custom script -->
   <script>
     // Photo Preview
     document.getElementById('photoInput').addEventListener('change', function(e) {
@@ -369,18 +666,341 @@
       }
     });
 
-    // Form Validation
-    document.getElementById('admissionForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      // Add your form submission logic here
-      alert('Form submitted successfully!');
+    // AJAX Admission Form Submission
+    $(document).ready(function() {
+      $('#admissionForm').on('submit', function(e) {
+        e.preventDefault();
+        var form = this;
+        var formData = new FormData(form);
+        
+        Swal.fire({
+          title: 'Submitting...',
+          text: 'Please wait while we submit your application.',
+          allowOutsideClick: false,
+          didOpen: () => { Swal.showLoading(); }
+        });
+        
+        $.ajax({
+          url: $(this).attr('action'),
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          dataType: 'json',
+          success: function(response) {
+            Swal.close();
+            if (response.success) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Application Submitted!',
+                text: response.message,
+                showConfirmButton: false,
+                timer: 3000,
+                background: '#f6fff6',
+                color: '#1a4d1a',
+                customClass: { popup: 'swal2-border-radius' }
+              });
+              form.reset();
+              $('#photoPreview').hide();
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Submission Failed',
+                text: response.message,
+                background: '#fff6f6',
+                color: '#7a1a1a',
+                confirmButtonColor: '#d33',
+                customClass: { popup: 'swal2-border-radius' }
+              });
+            }
+          },
+          error: function(xhr, status, error) {
+            Swal.close();
+            console.log('Error:', status, error);
+            console.log('Response:', xhr.responseText);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Could not submit your application. Please try again later.',
+              background: '#fff6f6',
+              color: '#7a1a1a',
+              confirmButtonColor: '#d33',
+              customClass: { popup: 'swal2-border-radius' }
+            });
+          }
+        });
+      });
     });
 
     // PDF Download
     function downloadPDF() {
-      // Add your PDF generation logic here
-      alert('PDF download will be implemented');
+      // Get form data
+      var formData = new FormData(document.getElementById('admissionForm'));
+      var data = {};
+      for (var [key, value] of formData.entries()) {
+        data[key] = value;
+      }
+
+      // Create PDF
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Add school logo/header with border
+      doc.setFillColor(240, 240, 240);
+      doc.rect(10, 10, 190, 40, 'F');
+      
+      // Add school badge (if available)
+      try {
+        const img = new Image();
+        img.src = 'assets/img/badge1.png';
+        if (img.complete) {
+          doc.addImage(img, 'PNG', 15, 15, 20, 20);
+        }
+      } catch (e) {
+        // If image fails to load, continue without it
+      }
+      
+      doc.setFontSize(22);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0, 0, 0);
+      doc.text('ST. FRANCIS PRIMARY SCHOOL', 105, 25, { align: 'center' });
+      
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Ntinda, Kiwatule Road', 105, 35, { align: 'center' });
+      
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'italic');
+      doc.text('Excellence in Education', 105, 45, { align: 'center' });
+
+      // Main title
+      doc.setFontSize(18);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0, 0, 0);
+      doc.text('STUDENT ADMISSION APPLICATION FORM', 105, 60, { align: 'center' });
+
+      // Photo area (top right) - moved slightly to avoid overlap
+      doc.setFillColor(248, 249, 250);
+      doc.rect(150, 70, 40, 50, 'F');
+      doc.setDrawColor(200, 200, 200);
+      doc.rect(150, 70, 40, 50, 'D');
+      
+      doc.setFontSize(8);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(100, 100, 100);
+      doc.text('PHOTO HERE', 170, 90, { align: 'center' });
+      doc.setFontSize(6);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Passport Size', 170, 100, { align: 'center' });
+      doc.text('2x2 inches', 170, 107, { align: 'center' });
+
+      // Student Information Section
+      let yPosition = 75;
+      const lineHeight = 7;
+      const leftMargin = 20;
+      const rightMargin = 140; // Reduced to avoid photo overlap
+
+      // Section header with background
+      doc.setFillColor(220, 220, 220);
+      doc.rect(leftMargin - 5, yPosition - 5, 120, 8, 'F');
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0, 0, 0);
+      doc.text('STUDENT INFORMATION', leftMargin, yPosition);
+      yPosition += lineHeight + 3;
+
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(0, 0, 0);
+      
+      // Student details in organized format - single column to avoid overlap
+      doc.setFont('helvetica', 'bold');
+      doc.text('Full Name:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text((data.student_first_name || '') + ' ' + (data.student_last_name || ''), leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Date of Birth:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.student_dob || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Gender:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.student_gender || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Nationality:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.student_nationality || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Home Address:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.student_address || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Grade Level:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.student_grade || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      // Guardian Information Section
+      doc.setFillColor(220, 220, 220);
+      doc.rect(leftMargin - 5, yPosition - 5, 120, 8, 'F');
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0, 0, 0);
+      doc.text('GUARDIAN INFORMATION', leftMargin, yPosition);
+      yPosition += lineHeight + 3;
+
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('Guardian Name:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text((data.guardian1_fullname || '') + ' ' + (data.guardian1_relationship || ''), leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Relationship:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.guardian1_relationship || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Contact Number:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.guardian1_phone_primary || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Email Address:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.guardian1_email || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Occupation:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.guardian1_occupation || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight + 5;
+
+      // Additional Information Section
+      doc.setFillColor(220, 220, 220);
+      doc.rect(leftMargin - 5, yPosition - 5, 120, 8, 'F');
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0, 0, 0);
+      doc.text('ADDITIONAL INFORMATION', leftMargin, yPosition);
+      yPosition += lineHeight + 3;
+
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('Religion:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.religion || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Interview Date:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.interview_date || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Former School:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.previous_school_name || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Area of Residence:', leftMargin, yPosition);
+      doc.setFont('helvetica', 'normal');
+      doc.text(data.student_address || '', leftMargin + 25, yPosition);
+      yPosition += lineHeight;
+
+      if (data.reason_for_transfer) {
+        doc.setFont('helvetica', 'bold');
+        doc.text('Reason for Transfer:', leftMargin, yPosition);
+        doc.setFont('helvetica', 'normal');
+        // Handle long text wrapping
+        const reason = data.reason_for_transfer;
+        const maxWidth = 160;
+        const lines = doc.splitTextToSize(reason, maxWidth);
+        doc.text(lines, leftMargin + 25, yPosition);
+        yPosition += (lines.length * lineHeight);
+      }
+
+      // Add footer at the bottom of the page
+      const pageHeight = doc.internal.pageSize.height;
+      const footerY = pageHeight - 25;
+      
+      doc.setFillColor(240, 240, 240);
+      doc.rect(10, footerY, 190, 20, 'F');
+      doc.setDrawColor(200, 200, 200);
+      doc.rect(10, footerY, 190, 20, 'D');
+      
+      doc.setFontSize(8);
+      doc.setFont('helvetica', 'italic');
+      doc.setTextColor(100, 100, 100);
+      doc.text('Generated on: ' + new Date().toLocaleDateString(), leftMargin, footerY + 8);
+      doc.text('Application Status: Pending Review', 120, footerY + 8);
+      doc.text('This is an official document of St. Francis Primary School', 105, footerY + 16, { align: 'center' });
+
+      // Save the PDF
+      var fileName = 'admission_form_' + (data.student_first_name || 'student') + '_' + new Date().toISOString().slice(0, 10) + '.pdf';
+      doc.save(fileName);
+
+      // Show success message
+      Swal.fire({
+        icon: 'success',
+        title: 'PDF Downloaded!',
+        text: 'Your application form has been downloaded as PDF.',
+        timer: 2000,
+        showConfirmButton: false,
+        background: '#f6fff6',
+        color: '#1a4d1a',
+        customClass: { popup: 'swal2-border-radius' }
+      });
     }
+
+    // Back button function
+    function goBack() {
+      if (document.referrer) {
+        window.history.back();
+      } else {
+        window.location.href = 'admissions.html';
+      }
+    }
+
+    console.log('jQuery loaded:', typeof $ !== 'undefined');
+    if (typeof $ !== 'undefined') {
+        console.log('jQuery version:', $.fn.jquery);
+    } else {
+        console.log('jQuery is NOT loaded!');
+    }
+
+    // Custom file input label update
+    $(document).ready(function() {
+      $('.custom-file-input input[type="file"]').on('change', function() {
+        var fileName = $(this).val().split('\\').pop();
+        var label = $(this).siblings('.custom-file-label');
+        if (fileName) {
+          label.text(fileName).addClass('selected');
+        } else {
+          label.text('Choose file...').removeClass('selected');
+        }
+      });
+    });
   </script>
 </body>
 

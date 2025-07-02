@@ -72,7 +72,7 @@
             </ul>
           </li>
           <li><a href="contact.html" class="active">Contact</a></li>
-          <li><a href="login.html" class="login-btn">Login</a></li>
+          <li><a href="admin/login.php" class="login-btn">Login</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -184,7 +184,7 @@
                     <div class="form-group">
                       <div class="input-with-icon">
                         
-                        <input type="text" class="form-control" name="sbject" placeholder="Subject">
+                        <input type="text" class="form-control" name="subject" placeholder="Subject">
                         <div class="invalid-feedback" style="display:none; color:red; font-size:0.95em;">Please enter a subject.</div>
                       </div>
                     </div>
@@ -198,12 +198,6 @@
                         <div class="invalid-feedback" style="display:none; color:red; font-size:0.95em;">Please enter your message.</div>
                       </div>
                     </div>
-                  </div>
-
-                  <div class="col-12">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
                   </div>
 
                   <div class="col-12 text-center">
@@ -254,32 +248,22 @@
           </ul>
         </div>
 
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h4>Our Newsletter</h4>
+          <h4>Stay Connected</h4>
+          <p>Subscribe to our newsletter and receive the latest news, updates, and special offers from St. Francis Primary School Ntinda!</p>
+          <div class="footer-newsletter-card">
+            <form action="" method="post" class="footer-newsletter-form">
+              <input type="email" name="email" placeholder="Enter your email address">
+              <input type="submit" value="Subscribe">
+            </form>
+          </div>
         </div>
 
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Hic solutasetp</h4>
-          <ul>
-            <li><a href="#">Molestiae accusamus iure</a></li>
-            <li><a href="#">Excepturi dignissimos</a></li>
-            <li><a href="#">Suscipit distinctio</a></li>
-            <li><a href="#">Dilecta</a></li>
-            <li><a href="#">Sit quas consectetur</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-         
+        <div class="col-lg-2 col-md-3 footer-links footer-badge-col">
+          <div class="footer-badge-wrapper">
             <img src="assets/img/badge1.png" alt="badge">
-         
+          </div>
         </div>
 
       </div>
@@ -314,50 +298,169 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- Add jQuery CDN and validation script before </body> -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- jQuery CDN for validation -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    /* Newsletter Redesign */
+    .footer-newsletter-card {
+      background: linear-gradient(135deg, #fff0f0 60%, #ffe0e0 100%);
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 16px 0 rgba(229, 57, 53, 0.08);
+      padding: 1.2rem 1rem 1rem 1rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .footer-newsletter-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, #e5393533 60%, transparent 100%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .footer-newsletter-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: #b71c1c;
+    }
+    .footer-newsletter-card p {
+      color: #b71c1c;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+    }
+    .footer-newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 0.5rem 1rem;
+      border-radius: 1.2rem;
+      border: none;
+      background: #fff;
+      font-size: 0.98rem;
+      box-shadow: 0 1px 4px 0 rgba(229, 57, 53, 0.06);
+      outline: none;
+      transition: box-shadow 0.2s;
+    }
+    .footer-newsletter-form input[type="email"]:focus {
+      box-shadow: 0 4px 16px 0 #e5393533;
+    }
+    .footer-newsletter-form input[type="submit"] {
+      padding: 0.5rem 1.5rem;
+      border-radius: 1.2rem;
+      border: none;
+      background: linear-gradient(90deg, #e53935 0%, #ff6f61 100%);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.98rem;
+      cursor: pointer;
+      box-shadow: 0 1px 4px 0 rgba(229, 57, 53, 0.10);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .footer-newsletter-form input[type="submit"]:hover {
+      background: linear-gradient(90deg, #ff6f61 0%, #e53935 100%);
+      box-shadow: 0 4px 16px 0 #e5393533;
+    }
+    @media (max-width: 991px) {
+      .footer-newsletter-card {
+        padding: 1rem 0.7rem 0.7rem 0.7rem;
+      }
+      .footer-newsletter-form {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .footer-newsletter-form input[type="submit"] {
+        width: 100%;
+      }
+    }
+    .newsletter-error {
+      border: 2px solid #e53935 !important;
+      background: #fff0f0 !important;
+    }
+    .newsletter-error-msg {
+      animation: fadeIn 0.3s;
+      font-size: 0.85rem;
+      margin-top: 0.1rem !important;
+      color: #e53935 !important;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (max-width: 991px) {
+      .footer-badge-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      .footer-badge-col {
+        text-align: center !important;
+      }
+      .footer-badge-wrapper img {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+    }
+  </style>
+
   <script>
-  $(document).ready(function() {
-    $('#contactForm').on('submit', function(e) {
-      var valid = true;
-      // Name validation
-      var name = $(this).find('input[name="name"]').val().trim();
-      if (name === '') {
-        $(this).find('input[name="name"]').next('.invalid-feedback').show();
-        valid = false;
-      } else {
-        $(this).find('input[name="name"]').next('.invalid-feedback').hide();
-      }
-      // Email validation
-      var email = $(this).find('input[name="email"]').val().trim();
-      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (email === '' || !emailPattern.test(email)) {
-        $(this).find('input[name="email"]').next('.invalid-feedback').show();
-        valid = false;
-      } else {
-        $(this).find('input[name="email"]').next('.invalid-feedback').hide();
-      }
-      // Subject validation
-      var subject = $(this).find('input[name="sbject"]').val().trim();
-      if (subject === '') {
-        $(this).find('input[name="sbject"]').next('.invalid-feedback').show();
-        valid = false;
-      } else {
-        $(this).find('input[name="sbject"]').next('.invalid-feedback').hide();
-      }
-      // Message validation
-      var message = $(this).find('textarea[name="message"]').val().trim();
-      if (message === '') {
-        $(this).find('textarea[name="message"]').next('.invalid-feedback').show();
-        valid = false;
-      } else {
-        $(this).find('textarea[name="message"]').next('.invalid-feedback').hide();
-      }
-      if (!valid) {
-        e.preventDefault();
-      }
+    $(function() {
+      $('#contactForm').on('submit', function(e) {
+        var valid = true;
+        // Remove previous errors
+        $(this).find('.invalid-feedback').hide();
+        $(this).find('.form-control').removeClass('is-invalid');
+        // Validate name
+        var name = $(this).find('input[name="name"]').val().trim();
+        if (!name) {
+          $(this).find('input[name="name"]').addClass('is-invalid').siblings('.invalid-feedback').show();
+          valid = false;
+        }
+        // Validate email
+        var email = $(this).find('input[name="email"]').val().trim();
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailPattern.test(email)) {
+          $(this).find('input[name="email"]').addClass('is-invalid').siblings('.invalid-feedback').show();
+          valid = false;
+        }
+        // Validate subject
+        var subject = $(this).find('input[name="subject"]').val().trim();
+        if (!subject) {
+          $(this).find('input[name="subject"]').addClass('is-invalid').siblings('.invalid-feedback').show();
+          valid = false;
+        }
+        // Validate message
+        var message = $(this).find('textarea[name="message"]').val().trim();
+        if (!message) {
+          $(this).find('textarea[name="message"]').addClass('is-invalid').siblings('.invalid-feedback').show();
+          valid = false;
+        }
+        if (!valid) {
+          e.preventDefault();
+        }
+      });
+      // Remove error on input
+      $('#contactForm .form-control').on('input change', function() {
+        $(this).removeClass('is-invalid');
+        $(this).siblings('.invalid-feedback').hide();
+      });
     });
-  });
   </script>
 
 </body>

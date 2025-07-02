@@ -247,77 +247,59 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">NiceSchool</span>
+            <span class="sitename">ST FRANCIS <br> P/S NTINDA</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p>Ntinda,</p>
+            <p>Kiwatule Road</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+256-752-619-656</span></p>
+            <p><strong>Email:</strong> <span>info@stfrancisntinda.sc.ug</span></p>
           </div>
           <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-youtube"></i></a>
             <a href=""><i class="bi bi-facebook"></i></a>
             <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href=""><i class="bi bi-tiktok"></i></a>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
+          <h4>Quick Links</h4>
           <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="#">Admissions</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Gallery</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h4>Our Newsletter</h4>
+          <h4>Stay Connected</h4>
+          <p>Subscribe to our newsletter and receive the latest news, updates, and special offers from St. Francis Primary School Ntinda!</p>
+          <div class="footer-newsletter-card">
+            <form action="" method="post" class="footer-newsletter-form">
+              <input type="email" name="email" placeholder="Enter your email address">
+              <input type="submit" value="Subscribe">
+            </form>
+          </div>
         </div>
 
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Hic solutasetp</h4>
-          <ul>
-            <li><a href="#">Molestiae accusamus iure</a></li>
-            <li><a href="#">Excepturi dignissimos</a></li>
-            <li><a href="#">Suscipit distinctio</a></li>
-            <li><a href="#">Dilecta</a></li>
-            <li><a href="#">Sit quas consectetur</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Nobis illum</h4>
-          <ul>
-            <li><a href="#">Ipsam</a></li>
-            <li><a href="#">Laudantium dolorum</a></li>
-            <li><a href="#">Dinera</a></li>
-            <li><a href="#">Trodelas</a></li>
-            <li><a href="#">Flexo</a></li>
-          </ul>
+        <div class="col-lg-2 col-md-3 footer-links footer-badge-col">
+          <div class="footer-badge-wrapper">
+            <img src="assets/img/badge1.png" alt="badge">
+          </div>
         </div>
 
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">MyWebsite</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">St. Francis Day and Boarding Primary School</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        
+        Designed by <a href=#>Ian Vikta</a>
       </div>
     </div>
 
@@ -341,6 +323,153 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- jQuery CDN for validation -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    /* Newsletter Redesign */
+    .footer-newsletter-card {
+      background: linear-gradient(135deg, #fff0f0 60%, #ffe0e0 100%);
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 16px 0 rgba(229, 57, 53, 0.08);
+      padding: 1.2rem 1rem 1rem 1rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .footer-newsletter-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, #e5393533 60%, transparent 100%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .footer-newsletter-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: #b71c1c;
+    }
+    .footer-newsletter-card p {
+      color: #b71c1c;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+    }
+    .footer-newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 0.5rem 1rem;
+      border-radius: 1.2rem;
+      border: none;
+      background: #fff;
+      font-size: 0.98rem;
+      box-shadow: 0 1px 4px 0 rgba(229, 57, 53, 0.06);
+      outline: none;
+      transition: box-shadow 0.2s;
+    }
+    .footer-newsletter-form input[type="email"]:focus {
+      box-shadow: 0 4px 16px 0 #e5393533;
+    }
+    .footer-newsletter-form input[type="submit"] {
+      padding: 0.5rem 1.5rem;
+      border-radius: 1.2rem;
+      border: none;
+      background: linear-gradient(90deg, #e53935 0%, #ff6f61 100%);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.98rem;
+      cursor: pointer;
+      box-shadow: 0 1px 4px 0 rgba(229, 57, 53, 0.10);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .footer-newsletter-form input[type="submit"]:hover {
+      background: linear-gradient(90deg, #ff6f61 0%, #e53935 100%);
+      box-shadow: 0 4px 16px 0 #e5393533;
+    }
+    @media (max-width: 991px) {
+      .footer-newsletter-card {
+        padding: 1rem 0.7rem 0.7rem 0.7rem;
+      }
+      .footer-newsletter-form {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .footer-newsletter-form input[type="submit"] {
+        width: 100%;
+      }
+    }
+    .newsletter-error {
+      border: 2px solid #e53935 !important;
+      background: #fff0f0 !important;
+    }
+    .newsletter-error-msg {
+      animation: fadeIn 0.3s;
+      font-size: 0.85rem;
+      margin-top: 0.1rem !important;
+      color: #e53935 !important;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (max-width: 991px) {
+      .footer-badge-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      .footer-badge-col {
+        text-align: center !important;
+      }
+      .footer-badge-wrapper img {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+    }
+  </style>
+
+  <script>
+    $(function() {
+      var form = $('.footer-newsletter-form');
+      var emailInput = form.find('input[type="email"]');
+      // Remove any previous error
+      function clearError() {
+        emailInput.removeClass('newsletter-error');
+        form.find('.newsletter-error-msg').remove();
+      }
+      // Email validation regex
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+      form.on('submit', function(e) {
+        clearError();
+        var email = emailInput.val().trim();
+        if (!isValidEmail(email)) {
+          e.preventDefault();
+          emailInput.addClass('newsletter-error');
+          emailInput.after('<div class="newsletter-error-msg">Required</div>');
+        }
+      });
+      emailInput.on('input', clearError);
+    });
+  </script>
 
 </body>
 
