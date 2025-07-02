@@ -30,15 +30,29 @@
       width: 100%;
       max-width: none;
       margin: 0;
-      background: var(--surface-color);
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      padding: 2rem 2vw;
+      background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+      border-radius: 22px;
+      box-shadow: 0 12px 36px rgba(78, 84, 200, 0.12), 0 2px 8px rgba(0,0,0,0.04);
+      padding: 2.5rem 2vw;
+      position: relative;
+      overflow: hidden;
+      /* Glassmorphism effect */
+      backdrop-filter: blur(8px) saturate(120%);
+      -webkit-backdrop-filter: blur(8px) saturate(120%);
+      border: 1.5px solid rgba(255,255,255,0.18);
     }
-    .form-section, .form-header, .rules-section {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto 2rem auto;
+    .form-content {
+      background: rgba(255,255,255,0.85);
+      border-radius: 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      padding: 1.5rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-header, .rules-section, .form-section {
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+      margin-bottom: 2rem;
     }
     .form-header {
       text-align: center;
@@ -52,11 +66,6 @@
     .form-header p {
       color: var(--default-color);
       opacity: 0.8;
-    }
-    .form-section {
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid #eee;
     }
     .form-section:last-child {
       border-bottom: none;
@@ -207,6 +216,11 @@
     @media (max-width: 768px) {
       .form-container {
         padding: 1rem 0.5rem;
+        border-radius: 12px;
+      }
+      .form-content {
+        border-radius: 10px;
+        padding: 1rem 0.5rem;
       }
       .form-section, .form-header, .rules-section {
         max-width: 100%;
@@ -230,408 +244,434 @@
   <div class="application-form">
     <div class="container">
       <div class="form-container">
-        <div style="text-align:center; margin-bottom: 1.5rem;">
-          <img src="assets/img/logo.png" alt="St. Francis Primary School Logo" style="max-width:120px; height:auto;">
+        <div class="form-content">
+          <div style="text-align:center; margin-bottom: 1.5rem;">
+            <img src="assets/img/logo.png" alt="St. Francis Primary School Logo" style="max-width:120px; height:auto;">
+          </div>
+          <!-- RULES & REGULATIONS SECTION -->
+          <div class="rules-section" style="margin-bottom:2rem;">
+            <div class="card shadow-sm border-0" style="background:#f8f9fa;">
+              <div class="card-body">
+                <h2 style="text-align:center; color:var(--heading-color); font-size:1.3rem; margin-bottom:1rem;">Rules & Regulations</h2>
+                <ol style="max-width:700px; margin:0 auto; color:var(--default-color); font-size:1rem; line-height:1.7;">
+                  <li>All information provided must be accurate and truthful.</li>
+                  <li>Submission of false documents will result in disqualification.</li>
+                  <li>All required documents must be uploaded in the specified formats.</li>
+                  <li>The school reserves the right to verify all submitted information.</li>
+                  <li>Admission is subject to space availability and fulfillment of all requirements.</li>
+                  <li>The application fee (if any) is non-refundable.</li>
+                  <li>The school's decision on admissions is final.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="rules-section" style="margin-bottom:2rem;">
+            <h2 style="text-align:center; color:var(--heading-color); font-size:1.3rem; margin-bottom:1rem;">Admission Instructions & Privacy</h2>
+            <ul style="max-width:700px; margin:0 auto; color:var(--default-color); font-size:1rem; line-height:1.7;">
+              <li>All fields marked with an asterisk (*) are mandatory.</li>
+              <li>Upload documents in PDF or JPEG format only.</li>
+              <li>Submit via: <b>Online Portal</b> (preferred), <b>Email</b> (admissions@school.edu), or <b>In-person</b> at the school office.</li>
+              <li>Submission Deadline: <b>[Insert Date]</b></li>
+              <li>For inquiries, contact: <b>Admissions Office, St. Francis Primary School, Tel: 0123-456789, Email: admissions@school.edu</b></li>
+              <li>All information collected is strictly for admission purposes and will be handled in accordance with our privacy policy.</li>
+            </ul>
+          </div>
+          <form id="admissionForm" action="forms/admission_submit.php" method="POST" enctype="multipart/form-data">
+            <!-- 1. Student Information -->
+            <div class="form-section">
+              <h3 class="section-title">1. Student Information</h3>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="form-label required-field">First Name</label>
+                  <input type="text" class="form-control" name="student_first_name" required>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Middle Name</label>
+                  <input type="text" class="form-control" name="student_middle_name">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label required-field">Last Name</label>
+                  <input type="text" class="form-control" name="student_last_name" required>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label required-field">Date of Birth</label>
+                  <input type="date" class="form-control" name="student_dob" required>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label required-field">Gender</label>
+                  <select class="form-select" name="student_gender" required>
+                    <option value="" selected disabled>Select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label required-field">Nationality</label>
+                  <input type="text" class="form-control" name="student_nationality" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label required-field">Home Address (City, State, Postal Code)</label>
+                  <input type="text" class="form-control" name="student_address" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label required-field">Grade Level Applying For</label>
+                  <select class="form-select" name="student_grade" required>
+                    <option value="" selected disabled>Select</option>
+                    <option>Daycare</option>
+                    <option>Kindergarten</option>
+                    <option>Nursery</option>
+                    <option>P.1</option>
+                    <option>P.2</option>
+                    <option>P.3</option>
+                    <option>P.4</option>
+                    <option>P.5</option>
+                    <option>P.6</option>
+                    <option>P.7</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Previous School Name</label>
+                  <input type="text" class="form-control" name="previous_school_name">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Previous School Address</label>
+                  <input type="text" class="form-control" name="previous_school_address">
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Reason for Transfer (if applicable)</label>
+                  <input type="text" class="form-control" name="reason_for_transfer">
+                </div>
+              </div>
+            </div>
+            <!-- 2. Parent/Guardian Information -->
+            <div class="form-section">
+              <h3 class="section-title">2. Parent/Guardian Information</h3>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <h5>Parent/Guardian 1</h5>
+                  <label class="form-label required-field">Full Name</label>
+                  <input type="text" class="form-control" name="guardian1_fullname" required>
+                  <label class="form-label required-field mt-2">Relationship</label>
+                  <input type="text" class="form-control" name="guardian1_relationship" required>
+                  <label class="form-label required-field mt-2">Contact Number (Primary)</label>
+                  <input type="tel" class="form-control" name="guardian1_phone_primary" required>
+                  <label class="form-label mt-2">Contact Number (Alternate)</label>
+                  <input type="tel" class="form-control" name="guardian1_phone_alt">
+                  <label class="form-label required-field mt-2">Email</label>
+                  <input type="email" class="form-control" name="guardian1_email" required>
+                  <label class="form-label mt-2">Occupation</label>
+                  <input type="text" class="form-control" name="guardian1_occupation">
+                  <label class="form-label mt-2">Address (if different)</label>
+                  <input type="text" class="form-control" name="guardian1_address">
+                </div>
+                <div class="col-md-6">
+                  <h5>Parent/Guardian 2</h5>
+                  <label class="form-label">Full Name</label>
+                  <input type="text" class="form-control" name="guardian2_fullname">
+                  <label class="form-label mt-2">Relationship</label>
+                  <input type="text" class="form-control" name="guardian2_relationship">
+                  <label class="form-label mt-2">Contact Number (Primary)</label>
+                  <input type="tel" class="form-control" name="guardian2_phone_primary">
+                  <label class="form-label mt-2">Contact Number (Alternate)</label>
+                  <input type="tel" class="form-control" name="guardian2_phone_alt">
+                  <label class="form-label mt-2">Email</label>
+                  <input type="email" class="form-control" name="guardian2_email">
+                  <label class="form-label mt-2">Occupation</label>
+                  <input type="text" class="form-control" name="guardian2_occupation">
+                  <label class="form-label mt-2">Address (if different)</label>
+                  <input type="text" class="form-control" name="guardian2_address">
+                </div>
+              </div>
+            </div>
+            <!-- 3. Emergency Contact Information -->
+            <div class="form-section">
+              <h3 class="section-title">3. Emergency Contact Information</h3>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label required-field">Full Name (non-parent/guardian)</label>
+                  <input type="text" class="form-control" name="emergency_fullname" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Relationship</label>
+                  <input type="text" class="form-control" name="emergency_relationship">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label required-field">Contact Number (Primary)</label>
+                  <input type="tel" class="form-control" name="emergency_phone_primary" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Contact Number (Alternate)</label>
+                  <input type="tel" class="form-control" name="emergency_phone_alt">
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label required-field">Address</label>
+                  <input type="text" class="form-control" name="emergency_address" required>
+                </div>
+              </div>
+            </div>
+            <!-- 4. Medical Information -->
+            <div class="form-section">
+              <h3 class="section-title">4. Medical Information</h3>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Allergies (food, medication, environmental)</label>
+                  <input type="text" class="form-control" name="allergies">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Chronic Conditions (e.g., asthma, diabetes)</label>
+                  <input type="text" class="form-control" name="chronic_conditions">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Current Medications</label>
+                  <input type="text" class="form-control" name="current_medications">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Family Doctor/Pediatrician Name</label>
+                  <input type="text" class="form-control" name="doctor_name">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Family Doctor/Pediatrician Contact</label>
+                  <input type="text" class="form-control" name="doctor_contact">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label required-field">Immunization Status</label>
+                  <select class="form-select" name="immunization_status" required>
+                    <option value="" selected disabled>Select</option>
+                    <option>Up-to-date</option>
+                    <option>Not up-to-date</option>
+                    <option>Unknown</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- 5. Academic and Behavioral Information -->
+            <div class="form-section">
+              <h3 class="section-title">5. Academic and Behavioral Information</h3>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Suspension/Expulsion History</label>
+                  <select class="form-select" name="suspension_history">
+                    <option value="" selected disabled>Select</option>
+                    <option>No</option>
+                    <option>Yes</option>
+                  </select>
+                  <input type="text" class="form-control mt-2" name="suspension_details" placeholder="If yes, please explain">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Special Educational Needs/Learning Disabilities</label>
+                  <select class="form-select" name="special_needs">
+                    <option value="" selected disabled>Select</option>
+                    <option>No</option>
+                    <option>Yes</option>
+                  </select>
+                  <input type="text" class="form-control mt-2" name="special_needs_details" placeholder="If yes, please provide details">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Past Academic/Behavioral Support</label>
+                  <select class="form-select" name="support_history">
+                    <option value="" selected disabled>Select</option>
+                    <option>No</option>
+                    <option>Yes</option>
+                  </select>
+                  <input type="text" class="form-control mt-2" name="support_details" placeholder="If yes, please provide details">
+                </div>
+              </div>
+            </div>
+            <!-- 6. Additional Information -->
+            <div class="form-section">
+              <h3 class="section-title">6. Additional Information</h3>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Preferred Language(s) at Home</label>
+                  <input type="text" class="form-control" name="preferred_language">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Siblings Enrolled in School</label>
+                  <select class="form-select" name="siblings_enrolled">
+                    <option value="" selected disabled>Select</option>
+                    <option>No</option>
+                    <option>Yes</option>
+                  </select>
+                  <input type="text" class="form-control mt-2" name="siblings_details" placeholder="If yes, names/grades">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">How You Heard About the School</label>
+                  <input type="text" class="form-control" name="referral_source">
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Additional Comments</label>
+                  <textarea class="form-control" name="additional_comments" rows="2"></textarea>
+                </div>
+              </div>
+            </div>
+            <!-- 7. Required Documents -->
+            <div class="form-section">
+              <h3 class="section-title">7. Required Documents</h3>
+              <div class="row g-4">
+                <div class="col-md-6">
+                  <div class="card shadow-sm border-0 mb-3">
+                    <div class="card-body d-flex align-items-center">
+                      <i class="bi bi-file-earmark-person-fill fs-2 text-primary me-3"></i>
+                      <div class="flex-grow-1">
+                        <label class="form-label required-field mb-1">Proof of Age</label>
+                        <div class="mb-1 small text-muted">Birth certificate or passport copy</div>
+                        <div class="custom-file-input">
+                          <input type="file" name="proof_of_age" id="proof_of_age" accept=".pdf,.jpg,.jpeg,.png" required>
+                          <label class="custom-file-label" for="proof_of_age">Choose file...</label>
+                          <button type="button" class="custom-file-btn" onclick="document.getElementById('proof_of_age').click()">Browse</button>
+                        </div>
+                        <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card shadow-sm border-0 mb-3">
+                    <div class="card-body d-flex align-items-center">
+                      <i class="bi bi-house-door-fill fs-2 text-success me-3"></i>
+                      <div class="flex-grow-1">
+                        <label class="form-label required-field mb-1">Proof of Residence</label>
+                        <div class="mb-1 small text-muted">Utility bill or lease agreement</div>
+                        <div class="custom-file-input">
+                          <input type="file" name="proof_of_residence" id="proof_of_residence" accept=".pdf,.jpg,.jpeg,.png" required>
+                          <label class="custom-file-label" for="proof_of_residence">Choose file...</label>
+                          <button type="button" class="custom-file-btn" onclick="document.getElementById('proof_of_residence').click()">Browse</button>
+                        </div>
+                        <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card shadow-sm border-0 mb-3">
+                    <div class="card-body d-flex align-items-center">
+                      <i class="bi bi-journal-text fs-2 text-warning me-3"></i>
+                      <div class="flex-grow-1">
+                        <label class="form-label mb-1">Academic Records</label>
+                        <div class="mb-1 small text-muted">Report card/transcript, transfer certificate</div>
+                        <div class="custom-file-input">
+                          <input type="file" name="academic_records" id="academic_records" accept=".pdf,.jpg,.jpeg,.png">
+                          <label class="custom-file-label" for="academic_records">Choose file...</label>
+                          <button type="button" class="custom-file-btn" onclick="document.getElementById('academic_records').click()">Browse</button>
+                        </div>
+                        <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card shadow-sm border-0 mb-3">
+                    <div class="card-body d-flex align-items-center">
+                      <i class="bi bi-file-medical-fill fs-2 text-danger me-3"></i>
+                      <div class="flex-grow-1">
+                        <label class="form-label mb-1">Medical Records</label>
+                        <div class="mb-1 small text-muted">Immunization record, medical report</div>
+                        <div class="custom-file-input">
+                          <input type="file" name="medical_records" id="medical_records" accept=".pdf,.jpg,.jpeg,.png">
+                          <label class="custom-file-label" for="medical_records">Choose file...</label>
+                          <button type="button" class="custom-file-btn" onclick="document.getElementById('medical_records').click()">Browse</button>
+                        </div>
+                        <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card shadow-sm border-0 mb-3">
+                    <div class="card-body d-flex align-items-center">
+                      <i class="bi bi-person-badge-fill fs-2 text-info me-3"></i>
+                      <div class="flex-grow-1">
+                        <label class="form-label required-field mb-1">Identification</label>
+                        <div class="mb-1 small text-muted">Parent/guardian ID copy, 2 recent student passport photos</div>
+                        <div class="custom-file-input">
+                          <input type="file" name="identification" id="identification" accept=".pdf,.jpg,.jpeg,.png" required multiple>
+                          <label class="custom-file-label" for="identification">Choose files...</label>
+                          <button type="button" class="custom-file-btn" onclick="document.getElementById('identification').click()">Browse</button>
+                        </div>
+                        <small class="text-muted">PDF, JPG, JPEG, PNG. You may select multiple files.</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card shadow-sm border-0 mb-3">
+                    <div class="card-body d-flex align-items-center">
+                      <i class="bi bi-universal-access-circle fs-2 text-secondary me-3"></i>
+                      <div class="flex-grow-1">
+                        <label class="form-label mb-1">Special Needs (if applicable)</label>
+                        <div class="mb-1 small text-muted">Educational psychologist report/IEP</div>
+                        <div class="custom-file-input">
+                          <input type="file" name="special_needs_report" id="special_needs_report" accept=".pdf,.jpg,.jpeg,.png">
+                          <label class="custom-file-label" for="special_needs_report">Choose file...</label>
+                          <button type="button" class="custom-file-btn" onclick="document.getElementById('special_needs_report').click()">Browse</button>
+                        </div>
+                        <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card shadow-sm border-0 mb-3">
+                    <div class="card-body d-flex align-items-center">
+                      <i class="bi bi-file-earmark-lock2-fill fs-2 text-dark me-3"></i>
+                      <div class="flex-grow-1">
+                        <label class="form-label mb-1">Legal Documents (if applicable)</label>
+                        <div class="mb-1 small text-muted">Court order/custody agreement</div>
+                        <div class="custom-file-input">
+                          <input type="file" name="legal_documents" id="legal_documents" accept=".pdf,.jpg,.jpeg,.png">
+                          <label class="custom-file-label" for="legal_documents">Choose file...</label>
+                          <button type="button" class="custom-file-btn" onclick="document.getElementById('legal_documents').click()">Browse</button>
+                        </div>
+                        <small class="text-muted">PDF, JPG, JPEG, PNG</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 8. Declaration and Consent -->
+            <div class="form-section">
+              <h3 class="section-title">8. Declaration and Consent</h3>
+              <div class="mb-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="accuracy_confirmed" id="accuracy_confirmed" required>
+                  <label class="form-check-label required-field" for="accuracy_confirmed">I confirm that all information provided is accurate.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="consent_school_use" id="consent_school_use" required>
+                  <label class="form-check-label required-field" for="consent_school_use">I consent to the use of this information for school purposes.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="consent_emergency" id="consent_emergency" required>
+                  <label class="form-check-label required-field" for="consent_emergency">I consent to emergency medical care for my child if needed.</label>
+                </div>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label required-field">Parent/Guardian Signature (type full name)</label>
+                  <input type="text" class="form-control" name="parent_signature" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label required-field">Date</label>
+                  <input type="date" class="form-control" name="signature_date" required>
+                </div>
+              </div>
+            </div>
+            <!-- Rules Agreement Checkbox -->
+            <div class="form-section" style="margin-top:-1.5rem; margin-bottom:0; padding-bottom:0; border-bottom:none;">
+              <div class="form-check" style="text-align:center;">
+                <input class="form-check-input" type="checkbox" name="rules_agreed" id="rules_agreed" required>
+                <label class="form-check-label required-field" for="rules_agreed" style="font-weight:600;">I have read and agree to the Rules & Regulations above.</label>
+              </div>
+            </div>
+            <!-- Form Actions -->
+            <div class="form-actions mt-4">
+              <button type="submit" class="btn btn-submit">Submit Application</button>
+              <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+          </form>
         </div>
-        <div class="rules-section" style="margin-bottom:2rem;">
-          <h2 style="text-align:center; color:var(--heading-color); font-size:1.3rem; margin-bottom:1rem;">Admission Instructions & Privacy</h2>
-          <ul style="max-width:700px; margin:0 auto; color:var(--default-color); font-size:1rem; line-height:1.7;">
-            <li>All fields marked with an asterisk (*) are mandatory.</li>
-            <li>Upload documents in PDF or JPEG format only.</li>
-            <li>Submit via: <b>Online Portal</b> (preferred), <b>Email</b> (admissions@school.edu), or <b>In-person</b> at the school office.</li>
-            <li>Submission Deadline: <b>[Insert Date]</b></li>
-            <li>For inquiries, contact: <b>Admissions Office, St. Francis Primary School, Tel: 0123-456789, Email: admissions@school.edu</b></li>
-            <li>All information collected is strictly for admission purposes and will be handled in accordance with our privacy policy.</li>
-          </ul>
-        </div>
-        <form id="admissionForm" action="forms/admission_submit.php" method="POST" enctype="multipart/form-data">
-          <!-- 1. Student Information -->
-          <div class="form-section">
-            <h3 class="section-title">1. Student Information</h3>
-            <div class="row g-3">
-              <div class="col-md-4">
-                <label class="form-label required-field">First Name</label>
-                <input type="text" class="form-control" name="student_first_name" required>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Middle Name</label>
-                <input type="text" class="form-control" name="student_middle_name">
-              </div>
-              <div class="col-md-4">
-                <label class="form-label required-field">Last Name</label>
-                <input type="text" class="form-control" name="student_last_name" required>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label required-field">Date of Birth</label>
-                <input type="date" class="form-control" name="student_dob" required>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label required-field">Gender</label>
-                <select class="form-select" name="student_gender" required>
-                  <option value="" selected disabled>Select</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label required-field">Nationality</label>
-                <input type="text" class="form-control" name="student_nationality" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Home Address (City, State, Postal Code)</label>
-                <input type="text" class="form-control" name="student_address" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Grade Level Applying For</label>
-                <select class="form-select" name="student_grade" required>
-                  <option value="" selected disabled>Select</option>
-                  <option>Daycare</option>
-                  <option>Kindergarten</option>
-                  <option>Nursery</option>
-                  <option>P.1</option>
-                  <option>P.2</option>
-                  <option>P.3</option>
-                  <option>P.4</option>
-                  <option>P.5</option>
-                  <option>P.6</option>
-                  <option>P.7</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Previous School Name</label>
-                <input type="text" class="form-control" name="previous_school_name">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Previous School Address</label>
-                <input type="text" class="form-control" name="previous_school_address">
-              </div>
-              <div class="col-md-12">
-                <label class="form-label">Reason for Transfer (if applicable)</label>
-                <input type="text" class="form-control" name="reason_for_transfer">
-              </div>
-            </div>
-          </div>
-          <!-- 2. Parent/Guardian Information -->
-          <div class="form-section">
-            <h3 class="section-title">2. Parent/Guardian Information</h3>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <h5>Parent/Guardian 1</h5>
-                <label class="form-label required-field">Full Name</label>
-                <input type="text" class="form-control" name="guardian1_fullname" required>
-                <label class="form-label required-field mt-2">Relationship</label>
-                <input type="text" class="form-control" name="guardian1_relationship" required>
-                <label class="form-label required-field mt-2">Contact Number (Primary)</label>
-                <input type="tel" class="form-control" name="guardian1_phone_primary" required>
-                <label class="form-label mt-2">Contact Number (Alternate)</label>
-                <input type="tel" class="form-control" name="guardian1_phone_alt">
-                <label class="form-label required-field mt-2">Email</label>
-                <input type="email" class="form-control" name="guardian1_email" required>
-                <label class="form-label mt-2">Occupation</label>
-                <input type="text" class="form-control" name="guardian1_occupation">
-                <label class="form-label mt-2">Address (if different)</label>
-                <input type="text" class="form-control" name="guardian1_address">
-              </div>
-              <div class="col-md-6">
-                <h5>Parent/Guardian 2</h5>
-                <label class="form-label">Full Name</label>
-                <input type="text" class="form-control" name="guardian2_fullname">
-                <label class="form-label mt-2">Relationship</label>
-                <input type="text" class="form-control" name="guardian2_relationship">
-                <label class="form-label mt-2">Contact Number (Primary)</label>
-                <input type="tel" class="form-control" name="guardian2_phone_primary">
-                <label class="form-label mt-2">Contact Number (Alternate)</label>
-                <input type="tel" class="form-control" name="guardian2_phone_alt">
-                <label class="form-label mt-2">Email</label>
-                <input type="email" class="form-control" name="guardian2_email">
-                <label class="form-label mt-2">Occupation</label>
-                <input type="text" class="form-control" name="guardian2_occupation">
-                <label class="form-label mt-2">Address (if different)</label>
-                <input type="text" class="form-control" name="guardian2_address">
-              </div>
-            </div>
-          </div>
-          <!-- 3. Emergency Contact Information -->
-          <div class="form-section">
-            <h3 class="section-title">3. Emergency Contact Information</h3>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label required-field">Full Name (non-parent/guardian)</label>
-                <input type="text" class="form-control" name="emergency_fullname" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Relationship</label>
-                <input type="text" class="form-control" name="emergency_relationship">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Contact Number (Primary)</label>
-                <input type="tel" class="form-control" name="emergency_phone_primary" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Contact Number (Alternate)</label>
-                <input type="tel" class="form-control" name="emergency_phone_alt">
-              </div>
-              <div class="col-md-12">
-                <label class="form-label required-field">Address</label>
-                <input type="text" class="form-control" name="emergency_address" required>
-              </div>
-            </div>
-          </div>
-          <!-- 4. Medical Information -->
-          <div class="form-section">
-            <h3 class="section-title">4. Medical Information</h3>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label">Allergies (food, medication, environmental)</label>
-                <input type="text" class="form-control" name="allergies">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Chronic Conditions (e.g., asthma, diabetes)</label>
-                <input type="text" class="form-control" name="chronic_conditions">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Current Medications</label>
-                <input type="text" class="form-control" name="current_medications">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Family Doctor/Pediatrician Name</label>
-                <input type="text" class="form-control" name="doctor_name">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Family Doctor/Pediatrician Contact</label>
-                <input type="text" class="form-control" name="doctor_contact">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Immunization Status</label>
-                <select class="form-select" name="immunization_status" required>
-                  <option value="" selected disabled>Select</option>
-                  <option>Up-to-date</option>
-                  <option>Not up-to-date</option>
-                  <option>Unknown</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <!-- 5. Academic and Behavioral Information -->
-          <div class="form-section">
-            <h3 class="section-title">5. Academic and Behavioral Information</h3>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label">Suspension/Expulsion History</label>
-                <select class="form-select" name="suspension_history">
-                  <option value="" selected disabled>Select</option>
-                  <option>No</option>
-                  <option>Yes</option>
-                </select>
-                <input type="text" class="form-control mt-2" name="suspension_details" placeholder="If yes, please explain">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Special Educational Needs/Learning Disabilities</label>
-                <select class="form-select" name="special_needs">
-                  <option value="" selected disabled>Select</option>
-                  <option>No</option>
-                  <option>Yes</option>
-                </select>
-                <input type="text" class="form-control mt-2" name="special_needs_details" placeholder="If yes, please provide details">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Past Academic/Behavioral Support</label>
-                <select class="form-select" name="support_history">
-                  <option value="" selected disabled>Select</option>
-                  <option>No</option>
-                  <option>Yes</option>
-                </select>
-                <input type="text" class="form-control mt-2" name="support_details" placeholder="If yes, please provide details">
-              </div>
-            </div>
-          </div>
-          <!-- 6. Additional Information -->
-          <div class="form-section">
-            <h3 class="section-title">6. Additional Information</h3>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label">Preferred Language(s) at Home</label>
-                <input type="text" class="form-control" name="preferred_language">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Siblings Enrolled in School</label>
-                <select class="form-select" name="siblings_enrolled">
-                  <option value="" selected disabled>Select</option>
-                  <option>No</option>
-                  <option>Yes</option>
-                </select>
-                <input type="text" class="form-control mt-2" name="siblings_details" placeholder="If yes, names/grades">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">How You Heard About the School</label>
-                <input type="text" class="form-control" name="referral_source">
-              </div>
-              <div class="col-md-12">
-                <label class="form-label">Additional Comments</label>
-                <textarea class="form-control" name="additional_comments" rows="2"></textarea>
-              </div>
-            </div>
-          </div>
-          <!-- 7. Required Documents -->
-          <div class="form-section">
-            <h3 class="section-title">7. Required Documents</h3>
-            <div class="row g-4">
-              <div class="col-md-6">
-                <div class="card shadow-sm border-0 mb-3">
-                  <div class="card-body d-flex align-items-center">
-                    <i class="bi bi-file-earmark-person-fill fs-2 text-primary me-3"></i>
-                    <div class="flex-grow-1">
-                      <label class="form-label required-field mb-1">Proof of Age</label>
-                      <div class="mb-1 small text-muted">Birth certificate or passport copy</div>
-                      <div class="custom-file-input">
-                        <input type="file" name="proof_of_age" id="proof_of_age" accept=".pdf,.jpg,.jpeg,.png" required>
-                        <label class="custom-file-label" for="proof_of_age">Choose file...</label>
-                        <button type="button" class="custom-file-btn" onclick="document.getElementById('proof_of_age').click()">Browse</button>
-                      </div>
-                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card shadow-sm border-0 mb-3">
-                  <div class="card-body d-flex align-items-center">
-                    <i class="bi bi-house-door-fill fs-2 text-success me-3"></i>
-                    <div class="flex-grow-1">
-                      <label class="form-label required-field mb-1">Proof of Residence</label>
-                      <div class="mb-1 small text-muted">Utility bill or lease agreement</div>
-                      <div class="custom-file-input">
-                        <input type="file" name="proof_of_residence" id="proof_of_residence" accept=".pdf,.jpg,.jpeg,.png" required>
-                        <label class="custom-file-label" for="proof_of_residence">Choose file...</label>
-                        <button type="button" class="custom-file-btn" onclick="document.getElementById('proof_of_residence').click()">Browse</button>
-                      </div>
-                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card shadow-sm border-0 mb-3">
-                  <div class="card-body d-flex align-items-center">
-                    <i class="bi bi-journal-text fs-2 text-warning me-3"></i>
-                    <div class="flex-grow-1">
-                      <label class="form-label mb-1">Academic Records</label>
-                      <div class="mb-1 small text-muted">Report card/transcript, transfer certificate</div>
-                      <div class="custom-file-input">
-                        <input type="file" name="academic_records" id="academic_records" accept=".pdf,.jpg,.jpeg,.png">
-                        <label class="custom-file-label" for="academic_records">Choose file...</label>
-                        <button type="button" class="custom-file-btn" onclick="document.getElementById('academic_records').click()">Browse</button>
-                      </div>
-                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card shadow-sm border-0 mb-3">
-                  <div class="card-body d-flex align-items-center">
-                    <i class="bi bi-file-medical-fill fs-2 text-danger me-3"></i>
-                    <div class="flex-grow-1">
-                      <label class="form-label mb-1">Medical Records</label>
-                      <div class="mb-1 small text-muted">Immunization record, medical report</div>
-                      <div class="custom-file-input">
-                        <input type="file" name="medical_records" id="medical_records" accept=".pdf,.jpg,.jpeg,.png">
-                        <label class="custom-file-label" for="medical_records">Choose file...</label>
-                        <button type="button" class="custom-file-btn" onclick="document.getElementById('medical_records').click()">Browse</button>
-                      </div>
-                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card shadow-sm border-0 mb-3">
-                  <div class="card-body d-flex align-items-center">
-                    <i class="bi bi-person-badge-fill fs-2 text-info me-3"></i>
-                    <div class="flex-grow-1">
-                      <label class="form-label required-field mb-1">Identification</label>
-                      <div class="mb-1 small text-muted">Parent/guardian ID copy, 2 recent student passport photos</div>
-                      <div class="custom-file-input">
-                        <input type="file" name="identification" id="identification" accept=".pdf,.jpg,.jpeg,.png" required multiple>
-                        <label class="custom-file-label" for="identification">Choose files...</label>
-                        <button type="button" class="custom-file-btn" onclick="document.getElementById('identification').click()">Browse</button>
-                      </div>
-                      <small class="text-muted">PDF, JPG, JPEG, PNG. You may select multiple files.</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card shadow-sm border-0 mb-3">
-                  <div class="card-body d-flex align-items-center">
-                    <i class="bi bi-universal-access-circle fs-2 text-secondary me-3"></i>
-                    <div class="flex-grow-1">
-                      <label class="form-label mb-1">Special Needs (if applicable)</label>
-                      <div class="mb-1 small text-muted">Educational psychologist report/IEP</div>
-                      <div class="custom-file-input">
-                        <input type="file" name="special_needs_report" id="special_needs_report" accept=".pdf,.jpg,.jpeg,.png">
-                        <label class="custom-file-label" for="special_needs_report">Choose file...</label>
-                        <button type="button" class="custom-file-btn" onclick="document.getElementById('special_needs_report').click()">Browse</button>
-                      </div>
-                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card shadow-sm border-0 mb-3">
-                  <div class="card-body d-flex align-items-center">
-                    <i class="bi bi-file-earmark-lock2-fill fs-2 text-dark me-3"></i>
-                    <div class="flex-grow-1">
-                      <label class="form-label mb-1">Legal Documents (if applicable)</label>
-                      <div class="mb-1 small text-muted">Court order/custody agreement</div>
-                      <div class="custom-file-input">
-                        <input type="file" name="legal_documents" id="legal_documents" accept=".pdf,.jpg,.jpeg,.png">
-                        <label class="custom-file-label" for="legal_documents">Choose file...</label>
-                        <button type="button" class="custom-file-btn" onclick="document.getElementById('legal_documents').click()">Browse</button>
-                      </div>
-                      <small class="text-muted">PDF, JPG, JPEG, PNG</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- 8. Declaration and Consent -->
-          <div class="form-section">
-            <h3 class="section-title">8. Declaration and Consent</h3>
-            <div class="mb-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="accuracy_confirmed" id="accuracy_confirmed" required>
-                <label class="form-check-label required-field" for="accuracy_confirmed">I confirm that all information provided is accurate.</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="consent_school_use" id="consent_school_use" required>
-                <label class="form-check-label required-field" for="consent_school_use">I consent to the use of this information for school purposes.</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="consent_emergency" id="consent_emergency" required>
-                <label class="form-check-label required-field" for="consent_emergency">I consent to emergency medical care for my child if needed.</label>
-              </div>
-            </div>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label required-field">Parent/Guardian Signature (type full name)</label>
-                <input type="text" class="form-control" name="parent_signature" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label required-field">Date</label>
-                <input type="date" class="form-control" name="signature_date" required>
-              </div>
-            </div>
-          </div>
-          <!-- Form Actions -->
-          <div class="form-actions mt-4">
-            <button type="submit" class="btn btn-submit">Submit Application</button>
-            <button type="reset" class="btn btn-secondary">Reset</button>
-          </div>
-        </form>
       </div>
     </div>
   </div>
