@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Faculty Staff - NiceSchool Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Faculty &amp; Staff - St. Francis Day &amp; Boarding Primary School Ntinda</title>
+  <meta name="description" content="Meet the dedicated teaching departments, boarding matrons, and administrative staff at St. Francis Day and Boarding Primary School Ntinda.">
+  <meta name="keywords" content="St. Francis Primary School Teachers, Primary School Staff Ntinda, Kampala Primary Teachers">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -26,14 +26,6 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: NiceSchool
-  * Template URL: https://bootstrapmade.com/nice-school-bootstrap-education-template/
-  * Updated: May 10 2025 with Bootstrap v5.3.6
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="faculty-staff-page">
@@ -42,16 +34,14 @@
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.webp" alt=""> -->
-        <i class="bi bi-buildings"></i>
-        <h1 class="sitename">NiceSchool</h1>
+        <img src="assets/img/bdg.png" alt="St. Francis Primary School Badge">
+        <h1 class="sitename">St. Francis P/S - Ntinda</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li class="dropdown"><a href="about.html"><span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="dropdown"><a href="about.html" class="active"><span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="about.html">About Us</a></li>
               <li><a href="admissions.html">Admissions</a></li>
@@ -62,38 +52,17 @@
           </li>
 
           <li><a href="students-life.html">Students Life</a></li>
-          <li><a href="news.html">News</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="alumni.html">Alumni</a></li>
-          <li class="dropdown"><a href="#"><span>More Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="news-details.html">News Details</a></li>
-              <li><a href="event-details.html">Event Details</a></li>
-              <li><a href="privacy.html">Privacy</a></li>
-              <li><a href="terms-of-service.html">Terms of Service</a></li>
-              <li><a href="404.html">Error 404</a></li>
-              <li><a href="starter-page.html">Starter Page</a></li>
-            </ul>
-          </li>
+          <li><a href="gallery.html">Gallery</a></li>
 
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="dropdown"><a href="news.html"><span>News &amp; Events</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
+              <li><a href="news.html">School News</a></li>
+              <li><a href="events.html">Events Calendar</a></li>
+              <li><a href="alumni.html">Alumni</a></li>
             </ul>
           </li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin/login.php" class="login-btn">Login</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -106,18 +75,18 @@
     <!-- Page Title -->
     <div class="page-title dark-background" style="background-image: url(assets/img/education/showcase-1.webp);">
       <div class="container position-relative">
-        <h1>Faculty Staff</h1>
-        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
+        <h1>Faculty &amp; Staff</h1>
+        <p>Meet the qualified, passionate teachers, department heads, and welfare officers guiding our learners every day.</p>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li class="current">Faculty Staff</li>
+            <li class="current">Faculty &amp; Staff</li>
           </ol>
         </nav>
       </div>
     </div><!-- End Page Title -->
 
-    <!-- Faculty  Staff Section -->
+    <!-- Faculty & Staff Section -->
     <section id="faculty--staff" class="faculty--staff section">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -126,24 +95,24 @@
           <div class="col-lg-8 mx-auto">
             <div class="search-container" data-aos="fade-up" data-aos-delay="200">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search faculty &amp; staff by name, department, or expertise...">
-                <button class="btn search-btn" type="button"><i class="bi bi-search"></i></button>
+                <input type="text" id="facultySearchInput" class="form-control" placeholder="Search teachers &amp; staff by name, subject, or section...">
+                <button class="btn search-btn" id="facultySearchBtn" type="button"><i class="bi bi-search"></i></button>
               </div>
               <div class="filters mt-3">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="facultyFilter" checked="">
-                  <label class="form-check-label" for="facultyFilter">Faculty</label>
+                  <input class="form-check-input role-filter" type="checkbox" id="facultyFilter" value="teaching" checked>
+                  <label class="form-check-label" for="facultyFilter">Teaching Staff</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="staffFilter" checked="">
-                  <label class="form-check-label" for="staffFilter">Staff</label>
+                  <input class="form-check-input role-filter" type="checkbox" id="staffFilter" value="hod" checked>
+                  <label class="form-check-label" for="staffFilter">Heads of Department</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="researchFilter" checked="">
-                  <label class="form-check-label" for="researchFilter">Research</label>
+                  <input class="form-check-input role-filter" type="checkbox" id="researchFilter" value="welfare" checked>
+                  <label class="form-check-label" for="researchFilter">Boarding &amp; Welfare</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="adminFilter" checked="">
+                  <input class="form-check-input role-filter" type="checkbox" id="adminFilter" value="admin" checked>
                   <label class="form-check-label" for="adminFilter">Administration</label>
                 </div>
               </div>
@@ -154,22 +123,22 @@
         <div class="row">
           <div class="col-lg-3" data-aos="fade-up" data-aos-delay="300">
             <div class="departments-nav">
-              <h4 class="departments-title">Departments</h4>
+              <h4 class="departments-title">School Departments</h4>
               <ul class="nav nav-tabs flex-column">
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#faculty--staff-tab-1">Computer Science</button>
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#faculty--staff-tab-1">Upper Primary (P.4–P.7)</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#faculty--staff-tab-2">Mathematics</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#faculty--staff-tab-2">Lower Primary (P.1–P.3)</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#faculty--staff-tab-3">Physics</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#faculty--staff-tab-3">Nursery &amp; Kindergarten</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#faculty--staff-tab-4">Biology</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#faculty--staff-tab-4">ICT, Library &amp; Sports</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#faculty--staff-tab-5">Chemistry</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#faculty--staff-tab-5">Boarding &amp; Pupil Welfare</button>
                 </li>
               </ul>
             </div>
@@ -177,127 +146,128 @@
 
           <div class="col-lg-9" data-aos="fade-up" data-aos-delay="400">
             <div class="tab-content">
+              <!-- Tab 1: Upper Primary -->
               <div class="tab-pane fade show active" id="faculty--staff-tab-1">
                 <div class="department-info mb-4">
-                  <h3>Computer Science Department</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dapibus, eros vel vestibulum laoreet, lacus mi efficitur velit, id pharetra odio magna nec augue.</p>
+                  <h3>Upper Primary &amp; Candidate Department (P.4 – P.7)</h3>
+                  <p>Our Upper Primary educators specialize in the four UNEB examinable subjects—English, Mathematics, Integrated Science, and Social Studies with Religious Education—ensuring every pupil builds mastery and exam confidence.</p>
                 </div>
                 <div class="row g-4">
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="hod teaching">
                     <div class="faculty-card">
                       <div class="faculty-image">
-                        <img src="assets/img/person/person-m-3.webp" class="img-fluid" alt="Faculty Member">
+                        <img src="assets/img/person/person-m-3.webp" class="img-fluid" alt="Mr. Emmanuel Mugisha">
                       </div>
                       <div class="faculty-info">
-                        <h4>Dr. Jonathan Baker</h4>
-                        <p class="faculty-title">Department Chair, Professor</p>
+                        <h4>Mr. Emmanuel Mugisha</h4>
+                        <p class="faculty-title">Head of Mathematics (P.6 &amp; P.7)</p>
                         <div class="faculty-specialties">
-                          <span>Artificial Intelligence</span>
-                          <span>Machine Learning</span>
+                          <span>Primary Mathematics</span>
+                          <span>UNEB PLE Preparation</span>
                         </div>
                         <div class="faculty-contact">
-                          <a href="mailto:jbaker@example.com"><i class="bi bi-envelope"></i> Email</a>
-                          <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="hod teaching">
                     <div class="faculty-card">
                       <div class="faculty-image">
-                        <img src="assets/img/person/person-f-5.webp" class="img-fluid" alt="Faculty Member">
+                        <img src="assets/img/person/person-f-5.webp" class="img-fluid" alt="Ms. Esther Nabirye">
                       </div>
                       <div class="faculty-info">
-                        <h4>Dr. Sarah Wilson</h4>
-                        <p class="faculty-title">Associate Professor</p>
+                        <h4>Ms. Esther Nabirye</h4>
+                        <p class="faculty-title">Director of Studies &amp; Senior English Teacher</p>
                         <div class="faculty-specialties">
-                          <span>Data Science</span>
-                          <span>Neural Networks</span>
+                          <span>English Language</span>
+                          <span>Debate &amp; Composition</span>
                         </div>
                         <div class="faculty-contact">
-                          <a href="mailto:swilson@example.com"><i class="bi bi-envelope"></i> Email</a>
-                          <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="hod teaching">
                     <div class="faculty-card">
                       <div class="faculty-image">
-                        <img src="assets/img/person/person-m-7.webp" class="img-fluid" alt="Faculty Member">
+                        <img src="assets/img/person/person-m-7.webp" class="img-fluid" alt="Mr. Patrick Ouma">
                       </div>
                       <div class="faculty-info">
-                        <h4>Dr. Michael Chen</h4>
-                        <p class="faculty-title">Assistant Professor</p>
+                        <h4>Mr. Patrick Ouma</h4>
+                        <p class="faculty-title">Head of Integrated Science</p>
                         <div class="faculty-specialties">
-                          <span>Cybersecurity</span>
-                          <span>Blockchain Technology</span>
+                          <span>Integrated Science</span>
+                          <span>Health &amp; Environment</span>
                         </div>
                         <div class="faculty-contact">
-                          <a href="mailto:mchen@example.com"><i class="bi bi-envelope"></i> Email</a>
-                          <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="hod teaching">
                     <div class="faculty-card">
                       <div class="faculty-image">
-                        <img src="assets/img/person/person-f-9.webp" class="img-fluid" alt="Faculty Member">
+                        <img src="assets/img/person/person-f-9.webp" class="img-fluid" alt="Mrs.Rebecca Asiimwe">
                       </div>
                       <div class="faculty-info">
-                        <h4>Dr. Emily Rodriguez</h4>
-                        <p class="faculty-title">Associate Professor</p>
+                        <h4>Mrs. Rebecca Asiimwe</h4>
+                        <p class="faculty-title">Head of Social Studies &amp; R.E.</p>
                         <div class="faculty-specialties">
-                          <span>Software Engineering</span>
-                          <span>Human-Computer Interaction</span>
+                          <span>Social Studies (SST)</span>
+                          <span>Religious Education</span>
                         </div>
                         <div class="faculty-contact">
-                          <a href="mailto:erodriguez@example.com"><i class="bi bi-envelope"></i> Email</a>
-                          <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="teaching">
                     <div class="faculty-card">
                       <div class="faculty-image">
-                        <img src="assets/img/person/person-m-11.webp" class="img-fluid" alt="Faculty Member">
+                        <img src="assets/img/person/person-m-11.webp" class="img-fluid" alt="Mr. Charles Kato">
                       </div>
                       <div class="faculty-info">
-                        <h4>Dr. Robert Williams</h4>
-                        <p class="faculty-title">Professor</p>
+                        <h4>Mr. Charles Kato</h4>
+                        <p class="faculty-title">P.7 Class Teacher &amp; SST Specialist</p>
                         <div class="faculty-specialties">
-                          <span>Algorithms</span>
-                          <span>Computational Theory</span>
+                          <span>Map Reading &amp; Civics</span>
+                          <span>Candidate Mentorship</span>
                         </div>
                         <div class="faculty-contact">
-                          <a href="mailto:rwilliams@example.com"><i class="bi bi-envelope"></i> Email</a>
-                          <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="admin">
                     <div class="faculty-card">
                       <div class="faculty-image">
-                        <img src="assets/img/person/person-f-2.webp" class="img-fluid" alt="Faculty Member">
+                        <img src="assets/img/person/person-f-2.webp" class="img-fluid" alt="Ms. Lydia Nakimuli">
                       </div>
                       <div class="faculty-info">
-                        <h4>Angela Davis</h4>
-                        <p class="faculty-title">Department Administrator</p>
+                        <h4>Ms. Lydia Nakimuli</h4>
+                        <p class="faculty-title">Academic Registrar &amp; Admissions Secretary</p>
                         <div class="faculty-specialties">
-                          <span>Administration</span>
-                          <span>Student Services</span>
+                          <span>UNEB Registration</span>
+                          <span>Parent Records</span>
                         </div>
                         <div class="faculty-contact">
-                          <a href="mailto:adavis@example.com"><i class="bi bi-envelope"></i> Email</a>
-                          <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
                         </div>
                       </div>
                     </div>
@@ -305,47 +275,48 @@
                 </div>
               </div>
 
+              <!-- Tab 2: Lower Primary -->
               <div class="tab-pane fade" id="faculty--staff-tab-2">
                 <div class="department-info mb-4">
-                  <h3>Mathematics Department</h3>
-                  <p>Curabitur a felis in nunc fringilla tristique. Fusce egestas elit eget lorem. Etiam vitae tortor. Nam at tortor in tellus interdum sagittis.</p>
+                  <h3>Lower Primary Department (P.1 – P.3)</h3>
+                  <p>Focused on the NCDC Thematic Curriculum, our Lower Primary teachers nurture reading fluency, handwriting, numeracy, life skills, and creative expression.</p>
                 </div>
                 <div class="row g-4">
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="hod teaching">
                     <div class="faculty-card">
                       <div class="faculty-image">
-                        <img src="assets/img/person/person-f-8.webp" class="img-fluid" alt="Faculty Member">
+                        <img src="assets/img/person/person-f-8.webp" class="img-fluid" alt="Mrs. Florence Nambi">
                       </div>
                       <div class="faculty-info">
-                        <h4>Dr. Patricia Lee</h4>
-                        <p class="faculty-title">Department Chair, Professor</p>
+                        <h4>Mrs. Florence Nambi</h4>
+                        <p class="faculty-title">Head of Lower Primary Section</p>
                         <div class="faculty-specialties">
-                          <span>Algebraic Topology</span>
-                          <span>Number Theory</span>
+                          <span>Literacy I &amp; II</span>
+                          <span>Reading Remediation</span>
                         </div>
                         <div class="faculty-contact">
-                          <a href="mailto:plee@example.com"><i class="bi bi-envelope"></i> Email</a>
-                          <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="teaching">
                     <div class="faculty-card">
                       <div class="faculty-image">
-                        <img src="assets/img/person/person-m-6.webp" class="img-fluid" alt="Faculty Member">
+                        <img src="assets/img/person/person-m-6.webp" class="img-fluid" alt="Mr. Denis Byaruhanga">
                       </div>
                       <div class="faculty-info">
-                        <h4>Dr. Thomas Grant</h4>
-                        <p class="faculty-title">Professor</p>
+                        <h4>Mr. Denis Byaruhanga</h4>
+                        <p class="faculty-title">Lower Primary Numeracy Teacher</p>
                         <div class="faculty-specialties">
-                          <span>Analysis</span>
-                          <span>Differential Equations</span>
+                          <span>Primary Numeracy</span>
+                          <span>Mental Arithmetic</span>
                         </div>
                         <div class="faculty-contact">
-                          <a href="mailto:tgrant@example.com"><i class="bi bi-envelope"></i> Email</a>
-                          <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
                         </div>
                       </div>
                     </div>
@@ -353,27 +324,28 @@
                 </div>
               </div>
 
+              <!-- Tab 3: Nursery -->
               <div class="tab-pane fade" id="faculty--staff-tab-3">
                 <div class="department-info mb-4">
-                  <h3>Physics Department</h3>
-                  <p>Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci.</p>
+                  <h3>Nursery &amp; Kindergarten Section</h3>
+                  <p>Caring early childhood educators guiding Baby, Middle, and Top Class pupils through phonics, storytelling, sensory play, and social development.</p>
                 </div>
                 <div class="row g-4">
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="hod teaching">
                     <div class="faculty-card">
                       <div class="faculty-image">
-                        <img src="assets/img/person/person-m-9.webp" class="img-fluid" alt="Faculty Member">
+                        <img src="assets/img/person/person-f-12.webp" class="img-fluid" alt="Mrs. Justine Akello">
                       </div>
                       <div class="faculty-info">
-                        <h4>Dr. Neil Armstrong</h4>
-                        <p class="faculty-title">Department Chair, Professor</p>
+                        <h4>Mrs. Justine Akello</h4>
+                        <p class="faculty-title">Head of Nursery &amp; Kindergarten</p>
                         <div class="faculty-specialties">
-                          <span>Quantum Physics</span>
-                          <span>Astrophysics</span>
+                          <span>Early Childhood Development</span>
+                          <span>Jolly Phonics</span>
                         </div>
                         <div class="faculty-contact">
-                          <a href="mailto:narmstrong@example.com"><i class="bi bi-envelope"></i> Email</a>
-                          <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
                         </div>
                       </div>
                     </div>
@@ -381,27 +353,48 @@
                 </div>
               </div>
 
+              <!-- Tab 4: ICT, Library & Sports -->
               <div class="tab-pane fade" id="faculty--staff-tab-4">
                 <div class="department-info mb-4">
-                  <h3>Biology Department</h3>
-                  <p>Vivamus elementum semper nisi. Sed fringilla mauris sit amet nibh. In auctor lobortis lacus. Suspendisse non nisl sit amet velit hendrerit rutrum.</p>
+                  <h3>ICT, Library &amp; Co-Curricular Department</h3>
+                  <p>Equipping learners with practical computer literacy, strong reading habits, physical education, athletics, and music, dance, and drama.</p>
                 </div>
                 <div class="row g-4">
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="hod teaching">
                     <div class="faculty-card">
                       <div class="faculty-image">
-                        <img src="assets/img/person/person-f-12.webp" class="img-fluid" alt="Faculty Member">
+                        <img src="assets/img/person/person-m-9.webp" class="img-fluid" alt="Mr. Samuel Wasswa">
                       </div>
                       <div class="faculty-info">
-                        <h4>Dr. Lisa Wong</h4>
-                        <p class="faculty-title">Department Chair, Professor</p>
+                        <h4>Mr. Samuel Wasswa</h4>
+                        <p class="faculty-title">Head of ICT &amp; Computer Lab</p>
                         <div class="faculty-specialties">
-                          <span>Molecular Biology</span>
-                          <span>Genetics</span>
+                          <span>Computer Literacy</span>
+                          <span>Digital Learning</span>
                         </div>
                         <div class="faculty-contact">
-                          <a href="mailto:lwong@example.com"><i class="bi bi-envelope"></i> Email</a>
-                          <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="teaching">
+                    <div class="faculty-card">
+                      <div class="faculty-image">
+                        <img src="assets/img/person/person-m-10.webp" class="img-fluid" alt="Mr. Peter Okello">
+                      </div>
+                      <div class="faculty-info">
+                        <h4>Mr. Peter Okello</h4>
+                        <p class="faculty-title">Games &amp; Sports Master</p>
+                        <div class="faculty-specialties">
+                          <span>Athletics &amp; Football</span>
+                          <span>Physical Education</span>
+                        </div>
+                        <div class="faculty-contact">
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
                         </div>
                       </div>
                     </div>
@@ -409,27 +402,28 @@
                 </div>
               </div>
 
+              <!-- Tab 5: Boarding & Welfare -->
               <div class="tab-pane fade" id="faculty--staff-tab-5">
                 <div class="department-info mb-4">
-                  <h3>Chemistry Department</h3>
-                  <p>Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. Fusce neque. Suspendisse faucibus.</p>
+                  <h3>Boarding, Health &amp; Pupil Welfare Department</h3>
+                  <p>Our dedicated school nurses, matrons, and wardens provide 24/7 pastoral care, health monitoring, and a warm family atmosphere for our boarders.</p>
                 </div>
                 <div class="row g-4">
-                  <div class="col-md-6 col-lg-4">
+                  <div class="col-md-6 col-lg-4 staff-member-col" data-role="welfare">
                     <div class="faculty-card">
                       <div class="faculty-image">
-                        <img src="assets/img/person/person-m-2.webp" class="img-fluid" alt="Faculty Member">
+                        <img src="assets/img/person/person-f-3.webp" class="img-fluid" alt="Sr. Margaret Nankinga">
                       </div>
                       <div class="faculty-info">
-                        <h4>Dr. Daniel Smith</h4>
-                        <p class="faculty-title">Department Chair, Professor</p>
+                        <h4>Sr. Margaret Nankinga</h4>
+                        <p class="faculty-title">Senior Boarding Matron &amp; School Nurse</p>
                         <div class="faculty-specialties">
-                          <span>Organic Chemistry</span>
-                          <span>Biochemistry</span>
+                          <span>Pediatric Nursing &amp; First Aid</span>
+                          <span>Boarding Welfare</span>
                         </div>
                         <div class="faculty-contact">
-                          <a href="mailto:dsmith@example.com"><i class="bi bi-envelope"></i> Email</a>
-                          <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
+                          <a href="mailto:info@stfrancisntinda.sc.ug"><i class="bi bi-envelope"></i> Email</a>
+                          <a href="contact.html" class="profile-link"><i class="bi bi-chat-dots"></i> Contact</a>
                         </div>
                       </div>
                     </div>
@@ -442,7 +436,7 @@
 
       </div>
 
-    </section><!-- /Faculty  Staff Section -->
+    </section><!-- /Faculty & Staff Section -->
 
   </main>
 
@@ -450,7 +444,7 @@
 
     <div class="container footer-top">
       <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
+        <div class="col-lg-3 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
             <span class="sitename">ST FRANCIS <br> P/S NTINDA</span>
           </a>
@@ -471,24 +465,35 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Admissions</a></li>
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Gallery</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="academics.html">Academics</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-4 col-md-6 footer-links">
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="students-life.html">Students Life</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="news.html">School News</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="alumni.html">Alumni</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
           <h4>Our Newsletter</h4>
-          <h4>Stay Connected</h4>
           <p>Subscribe to our newsletter and receive the latest news, updates, and special offers from St. Francis Primary School Ntinda!</p>
           <div class="footer-newsletter-card">
-            <form action="" method="post" class="footer-newsletter-form">
-              <input type="email" name="email" placeholder="Enter your email address">
+            <form action="forms/newsletter.php" method="post" class="footer-newsletter-form">
+              <input type="email" name="email" placeholder="Enter your email address" required>
               <input type="submit" value="Subscribe">
             </form>
           </div>
+          <p class="mt-3 small"><a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms-of-service.html">Terms of Service</a></p>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links footer-badge-col">
@@ -501,10 +506,9 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">St. Francis Day and Boarding Primary School</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">St. Francis Day and Boarding Primary School - Ntinda</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
-        
-        Designed by <a href=#>Ian Vikta</a>
+        Educate to Build the Nation
       </div>
     </div>
 
@@ -529,150 +533,31 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- jQuery CDN for validation -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <style>
-    /* Newsletter Redesign */
-    .footer-newsletter-card {
-      background: linear-gradient(135deg, #fff0f0 60%, #ffe0e0 100%);
-      border-radius: 1.2rem;
-      box-shadow: 0 4px 16px 0 rgba(229, 57, 53, 0.08);
-      padding: 1.2rem 1rem 1rem 1rem;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-    .footer-newsletter-card::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      right: -60px;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, #e5393533 60%, transparent 100%);
-      border-radius: 50%;
-      z-index: 0;
-    }
-    .footer-newsletter-card h4 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-      color: #b71c1c;
-    }
-    .footer-newsletter-card p {
-      color: #b71c1c;
-      margin-bottom: 1rem;
-      font-size: 0.98rem;
-    }
-    .footer-newsletter-form {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
-    .footer-newsletter-form input[type="email"] {
-      flex: 1;
-      padding: 0.5rem 1rem;
-      border-radius: 1.2rem;
-      border: none;
-      background: #fff;
-      font-size: 0.98rem;
-      box-shadow: 0 1px 4px 0 rgba(229, 57, 53, 0.06);
-      outline: none;
-      transition: box-shadow 0.2s;
-    }
-    .footer-newsletter-form input[type="email"]:focus {
-      box-shadow: 0 4px 16px 0 #e5393533;
-    }
-    .footer-newsletter-form input[type="submit"] {
-      padding: 0.5rem 1.5rem;
-      border-radius: 1.2rem;
-      border: none;
-      background: linear-gradient(90deg, #e53935 0%, #ff6f61 100%);
-      color: #fff;
-      font-weight: 600;
-      font-size: 0.98rem;
-      cursor: pointer;
-      box-shadow: 0 1px 4px 0 rgba(229, 57, 53, 0.10);
-      transition: background 0.2s, box-shadow 0.2s;
-    }
-    .footer-newsletter-form input[type="submit"]:hover {
-      background: linear-gradient(90deg, #ff6f61 0%, #e53935 100%);
-      box-shadow: 0 4px 16px 0 #e5393533;
-    }
-    @media (max-width: 991px) {
-      .footer-newsletter-card {
-        padding: 1rem 0.7rem 0.7rem 0.7rem;
-      }
-      .footer-newsletter-form {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .footer-newsletter-form input[type="submit"] {
-        width: 100%;
-      }
-    }
-    .newsletter-error {
-      border: 2px solid #e53935 !important;
-      background: #fff0f0 !important;
-    }
-    .newsletter-error-msg {
-      animation: fadeIn 0.3s;
-      font-size: 0.85rem;
-      margin-top: 0.1rem !important;
-      color: #e53935 !important;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @media (max-width: 991px) {
-      .footer-badge-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-      }
-      .footer-badge-col {
-        text-align: center !important;
-      }
-      .footer-badge-wrapper img {
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-      }
-    }
-  </style>
-
   <script>
-    $(function() {
-      var form = $('.footer-newsletter-form');
-      var emailInput = form.find('input[type="email"]');
-      // Remove any previous error
-      function clearError() {
-        emailInput.removeClass('newsletter-error');
-        form.find('.newsletter-error-msg').remove();
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('facultySearchInput');
+      const searchBtn = document.getElementById('facultySearchBtn');
+      const roleCheckboxes = document.querySelectorAll('.role-filter');
+      const staffCols = document.querySelectorAll('.staff-member-col');
+
+      function filterStaff() {
+        const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+        const activeRoles = Array.from(roleCheckboxes)
+          .filter(cb => cb.checked)
+          .map(cb => cb.value);
+
+        staffCols.forEach(col => {
+          const text = col.textContent.toLowerCase();
+          const roles = (col.getAttribute('data-role') || '').split(/\s+/);
+          const matchesRole = activeRoles.some(r => roles.includes(r));
+          const matchesQuery = !query || text.includes(query);
+          col.style.display = (matchesRole && matchesQuery) ? '' : 'none';
+        });
       }
-      // Email validation regex
-      function isValidEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      }
-      form.on('submit', function(e) {
-        clearError();
-        var email = emailInput.val().trim();
-        if (!isValidEmail(email)) {
-          e.preventDefault();
-          emailInput.addClass('newsletter-error');
-          emailInput.after('<div class="newsletter-error-msg">Required</div>');
-        }
-      });
-      emailInput.on('input', clearError);
+
+      if (searchInput) searchInput.addEventListener('input', filterStaff);
+      if (searchBtn) searchBtn.addEventListener('click', filterStaff);
+      roleCheckboxes.forEach(cb => cb.addEventListener('change', filterStaff));
     });
   </script>
 

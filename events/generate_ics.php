@@ -1,38 +1,66 @@
 <?php
 // events/generate_ics.php
 
-// Get event details from URL parameters (with defaults)
-$title = $_GET['title'] ?? 'Annual Science Fair Exhibition';
-$desc = $_GET['desc'] ?? 'Join us for the Annual Science Fair Exhibition at the Main Campus Auditorium.';
-$location = $_GET['location'] ?? 'Main Campus Auditorium';
-$start = $_GET['start'] ?? '2024-06-01T09:00'; // Format: 2024-06-01T09:00
-$end = $_GET['end'] ?? '2024-06-01T16:00';     // Format: 2024-06-01T16:00
-
-if (!$start || !$end) {
-    die('Missing start or end date/time.');
+function escapeIcsText(string $text): string {
+    // Strip CR/LF to prevent header or property injection and escape RFC 5545 special chars
+    $clean = str_replace(["\r\n", "\r", "\n"], ' ', $text);
+    $clean = addcslashes($clean, "\\;,");
+    return trim($clean);
 }
 
-// Convert to UTC format for iCalendar
-function toCalTime($datetime) {
-    $dt = new DateTime($datetime, new DateTimeZone('Africa/Kampala'));
-    return $dt->setTimezone(new DateTimeZone('UTC'))->format('Ymd\THis\Z');
+$title    = $_GET['title'] ?? 'School Event';
+$desc     = $_GET['desc'] ?? 'St. Francis Day and Boarding Primary School Event';
+$location = $_GET['location'] ?? 'St. Francis Primary School, Ntinda, Kampala';
+$start    = $_GET['start'] ?? '';
+$end      = $_GET['end'] ?? '';
+
+if ($start === '' || $end === '') {
+    http_response_code(400);
+    header('Content-Type: text/plain; charset=utf-8');
+    echo 'Missing start or end date parameters.';
+    exit;
 }
 
-$ics = "BEGIN:VCALENDAR\n" .
-    "VERSION:2.0\n" .
-    "PRODID:-//St Francis Ntinda//Event Calendar//EN\n" .
-    "BEGIN:VEVENT\n" .
-    "UID:" . uniqid() . "@stfrancisntinda.sc.ug\n" .
-    "DTSTAMP:" . toCalTime($start) . "\n" .
-    "DTSTART:" . toCalTime($start) . "\n" .
-    "DTEND:" . toCalTime($end) . "\n" .
-    "SUMMARY:" . addslashes($title) . "\n" .
-    "DESCRIPTION:" . addslashes($desc) . "\n" .
-    "LOCATION:" . addslashes($location) . "\n" .
-    "END:VEVENT\n" .
-    "END:VCALENDAR";
+try {
+    $tz = new DateTimeZone('Africa/Kampala');
+    $startDT = new DateTime($start, $tz);
+    $endDT   = new DateTime($end, $tz);
+} catch (Exception $e) {
+    http_response_code(400);
+    header('Content-Type: text/plain; charset=utf-8');
+    echo 'Invalid date format provided.';
+    exit;
+}
+
+$dtStart = $startDT->format('Ymd\THis');
+$dtEnd   = $endDT->format('Ymd\THis');
+$dtStamp = gmdate('Ymd\THis\Z');
+$uid     = uniqid('stfrancis-', true) . '@stfrancisntinda.sc.ug';
+
+$safeTitle    = escapeIcsText($title);
+$safeDesc     = escapeIcsText($desc);
+$safeLocation = escapeIcsText($location);
 
 header('Content-Type: text/calendar; charset=utf-8');
-header('Content-Disposition: attachment; filename=event.ics');
-echo $ics;
-exit; 
+header('Content-Disposition: attachment; filename="stfrancis-event.ics"');
+
+$lines = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//St. Francis Primary School Ntinda//School Events//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    'UID:' . $uid,
+    'DTSTAMP:' . $dtStamp,
+    'DTSTART;TZID=Africa/Kampala:' . $dtStart,
+    'DTEND;TZID=Africa/Kampala:' . $dtEnd,
+    'SUMMARY:' . $safeTitle,
+    'DESCRIPTION:' . $safeDesc,
+    'LOCATION:' . $safeLocation,
+    'STATUS:CONFIRMED',
+    'END:VEVENT',
+    'END:VCALENDAR',
+];
+
+echo implode("\r\n", $lines) . "\r\n";
