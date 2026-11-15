@@ -1,0 +1,11 @@
+{
+  "name": "st-francis-ntinda",
+  "version": "1.0.0",
+  "private": true,
+  "description": "St. Francis Day and Boarding Primary School - Ntinda Official Website",
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  }
+}
+

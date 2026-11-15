@@ -1,0 +1,6 @@
+forms/*.php
+events/*.php
+admin/*.php
+uploads/
+data/
+
